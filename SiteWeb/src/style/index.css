@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
+:root {
+  font-family: "Poppins", cursive;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: #0b183e;
+  background-color: #fafafa;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100% !important;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.header {
+  position: relative;
+  top: 0;
+  width: 100%;
+  left: 0;
+  height: 200px;
+  display: flex;
+  background-color: #ffffff;
+  box-shadow: 0px 5px 15px -10px rgba(11, 24, 62, 0.612);
+  z-index: 1000;
+}
+
+.logo-position {
+  margin: auto;
+  margin-left: 100px;
+  margin-right: 0;
+}
+
+.logo-taille {
+  height: 100px;
+}
+
+.nav {
+  display: flex;
+  margin: auto;
+  margin-left: 300px;
+}
+
+.nav > h1 {
+  margin-right: 100px;
+}
+
+.nav > h1:hover {
+  border-bottom: 2px solid #0b183e;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+.logo-user {
+  height: 50px;
+}
+
+.logo-user:hover {
+  height: 52px;
+  cursor: pointer;
+}
+
+.mapboxgl-map {
+  width: 1200px !important;
+  height: 600px !important;
+  position: none;
+}
+
+.mapboxgl-control-container {
+  display: none;
+}
+
+.map {
+  margin-top: 50px;
+  margin-left: 20%;
+}
+
+.card {
+  height: 100px;
+  background-color: #fff;
+  text-align: center;
+  margin: 50px;
+  border: 2px solid #0b183e;
+  border-radius: 20px;
+  display: flex;
+}
+
+.card > h2 {
+  margin: auto;
+}
+
+.card > h3 {
+  margin: auto;
+}
+
+.list-cards {
+  width: 60%;
+  margin: auto;
+}
