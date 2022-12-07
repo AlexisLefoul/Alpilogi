@@ -36,7 +36,7 @@ function App() {
         <div className="right">
           <h1>Dome Of Help !</h1>
           <p className="slogan">
-            L'application qui révolutionnera bientôt ton <br /> garde-manger !
+            L'application pour gérer son personnel <br /> et rassurer la famille !
           </p>
           <Timer deadline={deadline} />
           <p className="notif" style={{ marginLeft: 50, marginTop: 50 }}>
