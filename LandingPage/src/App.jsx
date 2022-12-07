@@ -5,9 +5,12 @@ import imgAideSoignante from "./assets/aidesoignante.png";
 import imgAdmr from "./assets/admr.png";
 import imgCcas from "./assets/ccas.png";
 import imgO2 from "./assets/o2.png";
+import logo_insta from "./assets/insta.png";
+import logo_facebook from "./assets/facebook.png";
+import logo_linkedin from "./assets/linkedin.png";
 
 function App() {
-  let deadline = "December, 31, 2022";
+  let deadline = "December, 9, 2022";
   const [isShowingAlert, setShowingAlert] = React.useState(false);
   const [data, setData] = useState();
   const [email, setEmail] = useState("");
@@ -46,7 +49,7 @@ function App() {
 
         <div className="container-text">
           <div>
-            <h1>La solution digitale pour faciliter les soins à domicile</h1>
+            <h1>La <a>solution</a> digitale pour faciliter les <a>soins à domicile</a></h1>
             <p>
               Alpilogi est un logiciel de digitalisation des feuilles de soin
               utilisées par les professionnels de la santé. Pour les familles,
@@ -65,18 +68,50 @@ function App() {
             </div>
             <Timer deadline={deadline} />
           </div>
-          <div style={{ marginLeft: 50 }}>
-            <div className="rond-img"></div>
-            <img src={imgAideSoignante} className="img-aidesoignante" />
+          <div>
+            <div className="container-img-rond">
+              <div className="rond-img"></div>
+              <img src={imgAideSoignante} className="img-aidesoignante" />
+            </div>
           </div>
         </div>
       </div>
       <div className="container-parts">
         <h1>Nos partenaires</h1>
         <div className="imgs-parts">
+          <img src={imgCcas} className="img-parts" style={{ marginTop: 50 }} />
           <img src={imgAdmr} className="img-parts" />
-          <img src={imgCcas} className="img-parts" />
           <img src={imgO2} className="img-parts" />
+        </div>
+      </div>
+
+      <div className="footer">
+        <div className="container-footer-row">
+          <div>
+            <p className="p-title-footer">Informations légales</p>
+            <div style={{ marginTop: 40 }}>
+              <p className="p-sous-title-footer">CGV</p>
+              <p className="p-sous-title-footer">Mentions légales</p>
+            </div>
+          </div>
+          <div>
+            <p className="p-title-footer">Confidentialité</p>
+            <div style={{ marginTop: 40 }}>
+              <p className="p-sous-title-footer">Cookies</p>
+              <p className="p-sous-title-footer">RGPD</p>
+            </div>
+          </div>
+          <div>
+            <p className="p-title-footer">Aide</p>
+            <div style={{ marginTop: 40 }}>
+              <p className="p-sous-title-footer">Nous contacter</p>
+            </div>
+          </div>
+        </div>
+        <div className="container-footer-logo">
+          <img src={logo_facebook}></img>
+          <img src={logo_insta}></img>
+          <img src={logo_linkedin}></img>
         </div>
       </div>
     </>
