@@ -270,7 +270,7 @@ button:hover {
   grid-template-rows: 1fr;
   grid-column-gap: 230px;
   grid-row-gap: 0px;
-  width: 72%;
+  width: 90%;
   margin: auto;
   margin-top: 80px;
 }
