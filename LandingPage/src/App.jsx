@@ -95,15 +95,15 @@ function App() {
         </div>
       </div>
       <div className="container-parts">
-        <div style={{ paddingTop: 30 }}>
+        <div className="container-textwithimgs">
           <h1 style={{ color: "#497174" }}>
             Pourquoi faire appel à <a>Alpilogi</a> ?
           </h1>
           <div className="imgs-parts">
-            <div>
+            <div className="img-and-text">
               <img src={photo1} className="img-parts" />
               <h3>
-                Pour les <a>organismes</a> <br/> d’aide à la personne
+                Pour les <a>organismes</a> <br /> d’aide à la personne
               </h3>
               <p>
                 Suivez facilement vos salariés grâce à un tableau de bord
@@ -111,7 +111,7 @@ function App() {
                 à charge.
               </p>
             </div>
-            <div>
+            <div className="img-and-text">
               <img src={photo2} className="img-parts" />
               <h3>
                 Pour les <a>professionnels</a> d’aide à la personne
@@ -122,7 +122,7 @@ function App() {
                 synthèse et de fiches patients.
               </p>
             </div>
-            <div>
+            <div className="img-and-text">
               <img src={photo3} className="img-parts" />
               <h3>
                 Pour les <a>familles</a>
@@ -141,21 +141,21 @@ function App() {
         <div className="container-footer-row">
           <div>
             <p className="p-title-footer">Informations légales</p>
-            <div style={{ marginTop: 40 }}>
+            <div className="div-sous-title-footer">
               <p className="p-sous-title-footer">CGV</p>
               <p className="p-sous-title-footer">Mentions légales</p>
             </div>
           </div>
           <div>
             <p className="p-title-footer">Confidentialité</p>
-            <div style={{ marginTop: 40 }}>
+            <div className="div-sous-title-footer">
               <p className="p-sous-title-footer">Cookies</p>
               <p className="p-sous-title-footer">RGPD</p>
             </div>
           </div>
           <div>
             <p className="p-title-footer">Aide</p>
-            <div style={{ marginTop: 40 }}>
+            <div className="div-sous-title-footer">
               <p className="p-sous-title-footer">Nous contacter</p>
             </div>
           </div>
