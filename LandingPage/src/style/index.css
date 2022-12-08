@@ -10,11 +10,12 @@ body {
 }
 
 h1 {
-  font-family: "DIN Alternate", sans-serif, cursive;
+  font-family: "DIN Alternate", sans-serif;
   font-size: 48px;
   text-align: left;
   margin-left: 50px;
   font-weight: 500;
+  margin-top: 0;
 }
 
 h2 {
@@ -24,7 +25,7 @@ h2 {
 }
 
 h3 {
-  font-family: "DIN Alternate", sans-serif, cursive;
+  font-family: "DIN Alternate", sans-serif;
   font-size: 30px;
   text-align: left;
   margin-left: 50px;
@@ -40,6 +41,10 @@ p {
 }
 
 h1 > a {
+  color: #c67430;
+}
+
+h3 > a {
   color: #c67430;
 }
 
@@ -251,7 +256,8 @@ button:hover {
 }
 
 .container-parts {
-  height: 450px;
+  height: 100%;
+  background-color: #d6e4e5;
 }
 
 .container-parts h1 {
@@ -262,16 +268,28 @@ button:hover {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
-  grid-column-gap: 200px;
+  grid-column-gap: 230px;
   grid-row-gap: 0px;
-  width: 60%;
+  width: 72%;
   margin: auto;
-  margin-top: 60px;
-  margin-left: 22%;
+  margin-top: 80px;
+}
+
+.imgs-parts h3 {
+  text-align: center;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.imgs-parts p {
+  margin: auto;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 40px;
 }
 
 .img-parts {
-  height: 200px;
+  height: 260px;
 }
 
 .footer {

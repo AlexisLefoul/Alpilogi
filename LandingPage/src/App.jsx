@@ -3,9 +3,9 @@ import Timer from "./components/Timer";
 import { Logo } from "./components/Logo";
 import MenuBurger from "./components/MenuBurger";
 import imgAideSoignante from "./assets/aidesoignante.png";
-import imgAdmr from "./assets/admr.png";
-import imgCcas from "./assets/ccas.png";
-import imgO2 from "./assets/o2.png";
+import photo1 from "./assets/photo1.png";
+import photo2 from "./assets/photo2.png";
+import photo3 from "./assets/photo3.png";
 import logo_insta from "./assets/insta.png";
 import logo_facebook from "./assets/facebook.png";
 import logo_linkedin from "./assets/linkedin.png";
@@ -95,11 +95,45 @@ function App() {
         </div>
       </div>
       <div className="container-parts">
-        <h1>Nos partenaires</h1>
-        <div className="imgs-parts">
-          <img src={imgCcas} className="img-parts" style={{ marginTop: 50 }} />
-          <img src={imgAdmr} className="img-parts" />
-          <img src={imgO2} className="img-parts" />
+        <div style={{ paddingTop: 30 }}>
+          <h1 style={{ color: "#497174" }}>
+            Pourquoi faire appel à <a>Alpilogi</a> ?
+          </h1>
+          <div className="imgs-parts">
+            <div>
+              <img src={photo1} className="img-parts" />
+              <h3>
+                Pour les <a>organismes</a> <br/> d’aide à la personne
+              </h3>
+              <p>
+                Suivez facilement vos salariés grâce à un tableau de bord
+                recensant tout votre personnel, leurs missions et leurs patients
+                à charge.
+              </p>
+            </div>
+            <div>
+              <img src={photo2} className="img-parts" />
+              <h3>
+                Pour les <a>professionnels</a> d’aide à la personne
+              </h3>
+              <p>
+                Remplissez les documents de vos patients facilement et plus
+                rapidement ! Vous pouvez également bénéficier d’un suivi, d’une
+                synthèse et de fiches patients.
+              </p>
+            </div>
+            <div>
+              <img src={photo3} className="img-parts" />
+              <h3>
+                Pour les <a>familles</a>
+              </h3>
+              <p>
+                Soyez avertis des soins apportés à vos proches en temps réel,
+                communiquez avec l’auxiliaire de vie, et faites passer des
+                messages grâce au tchat.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
