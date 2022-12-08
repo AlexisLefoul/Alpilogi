@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Timer from "./components/Timer";
 import { Logo } from "./components/Logo";
+import MenuBurger from "./components/MenuBurger";
 import imgAideSoignante from "./assets/aidesoignante.png";
 import imgAdmr from "./assets/admr.png";
 import imgCcas from "./assets/ccas.png";
@@ -8,12 +9,18 @@ import imgO2 from "./assets/o2.png";
 import logo_insta from "./assets/insta.png";
 import logo_facebook from "./assets/facebook.png";
 import logo_linkedin from "./assets/linkedin.png";
+import logo_burger from "./assets/charm_menu-hamburger.svg";
 
 function App() {
-  let deadline = "December, 9, 2022";
-  const [isShowingAlert, setShowingAlert] = React.useState(false);
+  let deadline = "June, 15, 2023";
+  const [isShowingAlert, setShowingAlert] = useState(false);
   const [data, setData] = useState();
   const [email, setEmail] = useState("");
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   /*const submit = async () => {
     setShowingAlert(true);
     await axios
@@ -45,11 +52,22 @@ function App() {
               <h2 className="title-contact">Contact</h2>
             </div>
           </div>
+          <div className="menu-burger" onClick={() => handleOpen()}>
+            <img src={logo_burger} />
+          </div>
+          <MenuBurger
+            idModal="menu-burger"
+            isOpen={open}
+            handleClose={handleClose}
+          ></MenuBurger>
         </div>
 
-        <div className="container-text">
-          <div>
-            <h1>La <a>solution</a> digitale pour faciliter les <a>soins à domicile</a></h1>
+        <div className="container-text-img">
+          <div className="container-text">
+            <h1>
+              La <a>solution</a> digitale pour faciliter les{" "}
+              <a>soins à domicile</a>
+            </h1>
             <p>
               Alpilogi est un logiciel de digitalisation des feuilles de soin
               utilisées par les professionnels de la santé. Pour les familles,
@@ -109,9 +127,15 @@ function App() {
           </div>
         </div>
         <div className="container-footer-logo">
-          <img src={logo_facebook}></img>
-          <img src={logo_insta}></img>
-          <img src={logo_linkedin}></img>
+          <div>
+            <img src={logo_facebook}></img>
+          </div>
+          <div>
+            <img src={logo_insta}></img>
+          </div>
+          <div>
+            <img src={logo_linkedin}></img>
+          </div>
         </div>
       </div>
     </>
