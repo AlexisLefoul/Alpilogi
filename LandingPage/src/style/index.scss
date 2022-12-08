@@ -275,7 +275,7 @@ button:hover {
 }
 
 .footer {
-  height: 280px;
+  height: 100%;
   background-color: #303030;
 }
 
@@ -317,9 +317,14 @@ button:hover {
 
 .container-footer-logo {
   margin: auto;
-  width: 50%;
+  width: 15%;
   text-align: center;
   margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 0px;
 }
 
 .container-footer-logo img {
@@ -594,7 +599,7 @@ button:hover {
     height: 35px;
   }
   .footer {
-    height: 255px;
+    height: 100%;
   }
 }
 
@@ -692,7 +697,7 @@ button:hover {
     margin-top: 20px;
   }
   .footer {
-    height: 200px;
+    height: 100%;
   }
 }
 
@@ -814,6 +819,7 @@ button:hover {
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    width: 30%;
   }
   .footer {
     height: 260px;
@@ -952,6 +958,7 @@ button:hover {
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    width: 30%;
   }
   .footer {
     height: 100%;
@@ -1101,6 +1108,7 @@ button:hover {
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    width: 50%;
   }
   .footer {
     height: 100%;
@@ -1251,6 +1259,7 @@ button:hover {
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    width: 100%;
   }
   .footer {
     height: 100%;
