@@ -10,7 +10,7 @@ function MenuBurger(props) {
         className="container-modal-menu"
       >
         <article className="modal">
-          <div style={{ height: 40 }}>
+          <div style={{ height: 40, position: "absolute" }}>
             <img
               className="close"
               data-target={props.idModal}

@@ -370,13 +370,13 @@ button:hover {
 }
 
 .container-modal-menu {
-  width: 97%;
+  width: 90%;
   height: 20%;
   border: none;
   background-color: #d6e4e5;
   z-index: 100;
   padding: 10px;
-  margin: 0;
+  margin: auto;
   border-radius: 0 0 20px 20px;
 }
 
@@ -389,7 +389,7 @@ button:hover {
   margin: 30px;
   width: 50%;
   margin-left: 25%;
-  margin-top: 50px;
+  margin-top: 60px;
 }
 
 .container-title-nav h2 {
@@ -403,7 +403,6 @@ button:hover {
 .close {
   height: 30px;
   margin-left: 35px;
-  margin-top: 50px;
 }
 
 .close:hover {
@@ -741,7 +740,7 @@ button:hover {
     margin-left: 14px;
   }
   .container-title-nav {
-    grid-column-gap: 60px;
+    grid-column-gap: 40px;
   }
   .logo {
     height: 200px;
