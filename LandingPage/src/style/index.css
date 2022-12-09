@@ -8,6 +8,9 @@ body {
   margin: auto;
   color: #303030;
 }
+#root {
+  overflow-x: hidden;
+}
 
 h1 {
   font-family: "DIN Alternate", sans-serif;
@@ -805,7 +808,7 @@ button:hover {
     grid-template-rows: repeat(3, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 10px;
-    margin-left: 23%;
+    margin-left: 15%;
   }
   .container-footer-row p {
     font-size: 20px;
