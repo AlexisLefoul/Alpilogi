@@ -29,8 +29,9 @@ function App() {
   const handleClose = () => setOpen(false);
 
   async function addNewlatters(email) {
-    const status = (await supabase.from("newsletters").insert({ email: email })).status;
-    if(status === 201) {
+    const status = (await supabase.from("newsletters").insert({ email: email }))
+      .status;
+    if (status === 201) {
       setEmail("");
     }
     console.log(status);
@@ -95,9 +96,15 @@ function App() {
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
                 placeholder="Entrez votre adresse mail"
-                type="mail"
+                type="email"
+                name="email"
               />
-              <button className="btn-input" onClick={() => addNewlatters(email)}>S'inscrire</button>
+              <button
+                className="btn-input"
+                onClick={() => addNewlatters(email)}
+              >
+                S'inscrire
+              </button>
             </div>
             <Timer deadline={deadline} />
           </div>
