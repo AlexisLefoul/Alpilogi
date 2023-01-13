@@ -11,6 +11,13 @@ import logo_facebook from "./assets/facebook.png";
 import logo_linkedin from "./assets/linkedin.png";
 import logo_burger from "./assets/charm_menu-hamburger.svg";
 
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  "https://vyjnvjelalkakihhnxto.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ5am52amVsYWxrYWtpaGhueHRvIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY3MzQ3MDg0OSwiZXhwIjoxOTg5MDQ2ODQ5fQ.lh4kVqFzJJaefh5QzbPp--etwnCTHx_YgzXvHbL4kzo"
+);
+
 function App() {
   let deadline = "June, 15, 2023";
   const [isShowingAlert, setShowingAlert] = useState(false);
@@ -20,6 +27,14 @@ function App() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  async function addNewlatters(email) {
+    const status = (await supabase.from("newsletters").insert({ email: email })).status;
+    if(status === 201) {
+      setEmail("");
+    }
+    console.log(status);
+  }
 
   /*const submit = async () => {
     setShowingAlert(true);
@@ -82,7 +97,7 @@ function App() {
                 placeholder="Entrez votre adresse mail"
                 type="mail"
               />
-              <button className="btn-input">S'inscrire</button>
+              <button className="btn-input" onClick={() => addNewlatters(email)}>S'inscrire</button>
             </div>
             <Timer deadline={deadline} />
           </div>
