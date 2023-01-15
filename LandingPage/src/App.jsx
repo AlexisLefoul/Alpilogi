@@ -12,6 +12,9 @@ import logo_linkedin from "./assets/linkedin.png";
 import logo_burger from "./assets/charm_menu-hamburger.svg";
 
 import { createClient } from "@supabase/supabase-js";
+import Lottie from "lottie-react";
+import animationDataCheck from "./img/check.json";
+import animationDataCross from "./img/cross.json";
 
 const supabase = createClient(
   "https://vyjnvjelalkakihhnxto.supabase.co",
@@ -21,7 +24,7 @@ const supabase = createClient(
 function App() {
   let deadline = "June, 15, 2023";
   const [isShowingAlert, setShowingAlert] = useState(false);
-  const [data, setData] = useState();
+  const [data, setData] = useState("");
   const [email, setEmail] = useState("");
 
   const [open, setOpen] = useState(false);
@@ -29,13 +32,46 @@ function App() {
   const handleClose = () => setOpen(false);
 
   async function addNewlatters(email) {
-    const status = (await supabase.from("newsletters").insert({ email: email }))
-      .status;
-    if (status === 201) {
+    if (email) {
+      const status = (
+        await supabase.from("newsletters").insert({ email: email })
+      ).status;
+      if (status === 201) {
+        setShowingAlert(true);
+        setData("Inscrit");
+        setEmail("");
+      } else if (status === 409) {
+        setShowingAlert(true);
+        setData("Erreur");
+        setEmail("");
+      }
+      console.log(status);
+    } else {
+      setShowingAlert(true);
+      setData("Erreur");
       setEmail("");
     }
-    console.log(status);
   }
+
+  const styleCheck = {
+    height: 300,
+    width: 300,
+    margin: "auto",
+  };
+
+  const styleCross = {
+    height: 200,
+    width: 200,
+    margin: "auto",
+  };
+
+  useEffect(() => {
+    if (isShowingAlert === true) {
+      setTimeout(() => {
+        setShowingAlert(false);
+      }, 3000);
+    }
+  }, [isShowingAlert]);
 
   /*const submit = async () => {
     setShowingAlert(true);
@@ -107,6 +143,32 @@ function App() {
               </button>
             </div>
             <Timer deadline={deadline} />
+            {data === "Inscrit" && isShowingAlert && (
+              <>
+                <div className="backdrop" />
+                <div className="container-notif">
+                  <Lottie
+                    loop="false"
+                    animationData={animationDataCheck}
+                    style={styleCheck}
+                  />
+                  <h2 style={{ marginTop: -50, fontSize: 40, color: "white" }}>{data} !</h2>
+                </div>
+              </>
+            )}
+            {data === "Erreur" && isShowingAlert && (
+              <>
+                <div className="backdrop" />
+                <div className="container-notif">
+                  <Lottie
+                    loop="false"
+                    animationData={animationDataCross}
+                    style={styleCross}
+                  />
+                  <h2 style={{ marginTop: 0, fontSize: 40, color: "white" }}>{data}</h2>
+                </div>
+              </>
+            )}
           </div>
           <div>
             <div className="container-img-rond">
@@ -199,43 +261,3 @@ function App() {
 }
 
 export default App;
-
-/*      {data?.status === 400 && isShowingAlert && (
-        <>
-          <div
-            className={`toast ${
-              isShowingAlert ? "alert-shown" : "alert-hidden"
-            }`}
-            onTransitionEnd={() => setShowingAlert(false)}
-          >
-            <p>{data?.data?.message}</p>
-          </div>
-        </>
-      )}*/
-
-/*<div className="container">
-        <div className="left">
-          <Logo className="logo" />
-        </div>
-        <div className="right">
-          <h1>Dome Of Help !</h1>
-          <p className="slogan">
-            L'application pour gérer son personnel <br /> et rassurer la famille !
-          </p>
-          <Timer deadline={deadline} />
-          <p className="notif" style={{ marginLeft: 50, marginTop: 50 }}>
-            Soit notifié de son arrivée !
-          </p>
-          <div className="container-input">
-            <input
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-              placeholder="Entrez votre adresse mail"
-              type="mail"
-            />
-            <button className="btn-input">
-              S'inscrire
-            </button>
-          </div>
-        </div>
-      </div>*/
