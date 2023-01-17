@@ -369,47 +369,6 @@ button:hover {
   background-color: #d6e4e5;
 }
 
-.container-modal-menu {
-  width: 90%;
-  height: 20%;
-  border: none;
-  background-color: #d6e4e5;
-  z-index: 100;
-  padding: 10px;
-  margin: auto;
-  border-radius: 0 0 20px 20px;
-}
-
-.container-title-nav {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  margin: 30px;
-  width: 50%;
-  margin-left: 25%;
-  margin-top: 60px;
-}
-
-.container-title-nav h2 {
-  margin: auto;
-}
-
-.modal {
-  overflow: visible;
-}
-
-.close {
-  height: 30px;
-  margin-left: 35px;
-}
-
-.close:hover {
-  height: 32px;
-  cursor: pointer;
-}
-
 .backdrop {
   background-color: rgba(0, 0, 0, 0.9);
   position: fixed;
@@ -689,7 +648,7 @@ button:hover {
     height: 200px;
     width: 200px;
     margin-left: 0;
-    margin-right: 34%;
+    margin-right: 35%;
   }
   .header {
     flex-direction: row-reverse;
@@ -698,16 +657,9 @@ button:hover {
     display: none;
   }
   .menu-burger {
-    display: flex;
-    margin: auto;
-    user-select: none;
-    margin-left: 35px;
-    -webkit-font-smoothing: antialiased;
+    display: initial;
   }
-  .menu-burger img:hover {
-    height: 42px;
-    cursor: pointer;
-  }
+
   .container-input {
     height: 46px;
     width: 85%;
@@ -771,7 +723,6 @@ button:hover {
     height: 200px;
     width: 200px;
     margin-left: 0;
-    margin-right: 25%;
   }
   .container-text-img {
     display: flex;
@@ -805,7 +756,6 @@ button:hover {
     height: 200px;
     width: 200px;
     margin-left: 0;
-    margin-right: 25%;
   }
   .container-input {
     height: 46px;
@@ -866,7 +816,7 @@ button:hover {
     height: 200px;
     width: 200px;
     margin-left: 0;
-    margin-right: 22%;
+    margin-right: 25%;
   }
   .btn-input {
     width: 145px;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Timer from "./components/Timer";
 import { Logo } from "./components/Logo";
-import MenuBurger from "./components/MenuBurger";
+import HamburgerMenu from "./components/HamburgerMenu";
 import imgAideSoignante from "./assets/aidesoignante.png";
 import photo1 from "./assets/photo1.png";
 import photo2 from "./assets/photo2.png";
@@ -9,7 +9,6 @@ import photo3 from "./assets/photo3.png";
 import logo_insta from "./assets/insta.png";
 import logo_facebook from "./assets/facebook.png";
 import logo_linkedin from "./assets/linkedin.png";
-import logo_burger from "./assets/charm_menu-hamburger.svg";
 
 import { createClient } from "@supabase/supabase-js";
 import Lottie from "lottie-react";
@@ -97,6 +96,7 @@ function App() {
     <>
       <div className="container-top">
         <div className="header">
+          <HamburgerMenu />
           <Logo className="logo"></Logo>
           <div className="nav">
             <h2>Concept</h2>
@@ -104,14 +104,6 @@ function App() {
               <h2 className="title-contact">Contact</h2>
             </div>
           </div>
-          <div className="menu-burger" onClick={() => handleOpen()}>
-            <img src={logo_burger} />
-          </div>
-          <MenuBurger
-            idModal="menu-burger"
-            isOpen={open}
-            handleClose={handleClose}
-          ></MenuBurger>
         </div>
 
         <div className="container-text-img">
@@ -152,7 +144,9 @@ function App() {
                     animationData={animationDataCheck}
                     style={styleCheck}
                   />
-                  <h2 style={{ marginTop: -50, fontSize: 40, color: "white" }}>{data} !</h2>
+                  <h2 style={{ marginTop: -50, fontSize: 40, color: "white" }}>
+                    {data} !
+                  </h2>
                 </div>
               </>
             )}
@@ -165,7 +159,9 @@ function App() {
                     animationData={animationDataCross}
                     style={styleCross}
                   />
-                  <h2 style={{ marginTop: 0, fontSize: 40, color: "white" }}>{data}</h2>
+                  <h2 style={{ marginTop: 0, fontSize: 40, color: "white" }}>
+                    {data}
+                  </h2>
                 </div>
               </>
             )}
@@ -261,3 +257,12 @@ function App() {
 }
 
 export default App;
+
+/*          <div className="menu-burger" onClick={() => handleOpen()}>
+            <img src={logo_burger} />
+          </div>
+          <MenuBurger
+            idModal="menu-burger"
+            isOpen={open}
+            handleClose={handleClose}
+          ></MenuBurger>*/
