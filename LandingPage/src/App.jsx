@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Timer from "./components/Timer";
 import { Logo } from "./components/Logo";
 import HamburgerMenu from "./components/HamburgerMenu";
+import AccordionFooter from "./components/AccordionFooter";
 import imgAideSoignante from "./assets/aidesoignante.png";
 import photo1 from "./assets/photo1.png";
 import photo2 from "./assets/photo2.png";
@@ -25,10 +26,6 @@ function App() {
   const [isShowingAlert, setShowingAlert] = useState(false);
   const [data, setData] = useState("");
   const [email, setEmail] = useState("");
-
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   async function addNewlatters(email) {
     if (email) {
@@ -240,6 +237,7 @@ function App() {
             </div>
           </div>
         </div>
+        <AccordionFooter></AccordionFooter>
         <div className="container-footer-logo">
           <div>
             <img src={logo_facebook}></img>
