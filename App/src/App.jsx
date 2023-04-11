@@ -1,6 +1,10 @@
 import reactLogo from './assets/react.svg'
+import { Text } from "@chakra-ui/react"
+import { Heading } from '@chakra-ui/react'
 
 function App() {
+
+  var count;
 
   return (
     <div className="App">
@@ -12,7 +16,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <Heading color='brand.2' fontWeight='bold'>Vite + React</Heading>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
