@@ -1,5 +1,5 @@
 {
-  "name": "vite-project",
+  "name": "alpilogi",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,6 +12,7 @@
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.10.1",
     "react-native": "^0.70.6",
     "react-router-dom": "^6.14.1"
   },

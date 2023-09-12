@@ -1,24 +1,17 @@
 import React from "react";
 import "../style/index.css";
+import { BiHomeAlt, BiFile, BiMessageDetail, BiCalendar } from "react-icons/bi";
 
 function MenuTabParti({ className }) {
   return (
     <div className={`menu-bar ${className}`}>
       <div className="div">
         <div className="active-page">
-          <img className="icon-home" alt="Icon home" src="icon-home.png" />
+          <BiHomeAlt className="icon-home" />
         </div>
-        <img className="icon-file" alt="Icon file" src="icon-file.png" />
-        <img
-          className="icon-message"
-          alt="Icon message"
-          src="icon-message.png"
-        />
-        <img
-          className="icon-calendar"
-          alt="Icon calendar"
-          src="icon-calendar.png"
-        />
+        <BiFile className="icon-file" />
+        <BiMessageDetail className="icon-message" />
+        <BiCalendar className="icon-calendar" />
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import BtnPrimary from "../components/BtnPrimary";
+import { BiChevronLeft } from "react-icons/bi"
 import "../style/index.css";
 
 function ChoiseProfilPage() {
@@ -10,7 +11,7 @@ function ChoiseProfilPage() {
         <div className="top">
           <Link to="/home">
             <div className="icon-back">
-              <img className="icon-back" alt="Vector" src="icon-back.svg" />
+              <BiChevronLeft className="icon-back" />
             </div>
           </Link>
           <h1 className="text-wrapper">Vous êtes :</h1>

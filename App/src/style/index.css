@@ -2,7 +2,7 @@
   --bleu-1: rgba(73, 113, 116, 1);
   --bleu-3: rgba(239, 245, 245, 1);
   --black: rgba(48, 48, 48, 1);
-  --corps-font-family: "Roboto-Regular", Helvetica;
+  --corps-font-family: "Roboto";
   --corps-font-size: 24px;
   --corps-font-style: normal;
   --corps-font-weight: 400;
@@ -12,7 +12,7 @@
 
 * {
   -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+  box-sizing: content-box;
 }
 html,
 body {
@@ -25,27 +25,21 @@ a {
 }
 
 .element-home {
-  background-color: #eff5f5;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   width: 100%;
 }
 
-.element-home .div {
-  background-color: #eff5f5;
-  border: 1px none;
-  height: 844px;
-  position: relative;
-  width: 390px;
+.element-home .body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
 }
 
-.element-home .body {
-  height: 274px;
-  left: 45px;
-  position: absolute;
-  top: 520px;
-  width: 301px;
+.element-home .top {
+  align-self: center;
 }
 
 .element-home .btns {
@@ -53,10 +47,6 @@ a {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  left: 34px;
-  position: absolute;
-  top: 134px;
-  width: fit-content;
 }
 
 .element-home .btn-primary-instance {
@@ -66,15 +56,15 @@ a {
 
 .element-home .digitalisez-vos {
   color: transparent;
-  font-family: "DIN Alternate-Bold", Helvetica;
+  font-family: DIN Alternate;
   font-size: 32px;
   font-weight: 700;
-  left: 0;
   letter-spacing: 0;
   line-height: normal;
-  position: absolute;
-  top: 0;
-  width: 299px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: auto;
+  margin-top: 30px;
 }
 
 .element-home .text-wrapper {
@@ -87,14 +77,6 @@ a {
 
 .element-home .text-wrapper-2 {
   color: #2f2f2f;
-}
-
-.element-home .top {
-  height: 488px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 390px;
 }
 
 .btn-primary {
