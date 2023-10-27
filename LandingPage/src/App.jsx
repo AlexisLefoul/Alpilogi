@@ -22,7 +22,7 @@ const supabase = createClient(
 );
 
 function App() {
-  let deadline = "June, 15, 2023";
+  let deadline = "March, 01, 2024";
   const [isShowingAlert, setShowingAlert] = useState(false);
   const [data, setData] = useState("");
   const [email, setEmail] = useState("");
