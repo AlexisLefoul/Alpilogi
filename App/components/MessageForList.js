@@ -13,6 +13,7 @@ const MessageForList = ({ name, url }) => {
         style={styles.imgMessage}
       >
         <AvatarImage
+          alt={Color.bleu1}
           source={{
             uri: url,
           }}

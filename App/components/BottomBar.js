@@ -4,7 +4,6 @@ import {
   View,
   TouchableOpacity,
   Image,
-  LayoutAnimation,
   Text,
   Platform,
 } from "react-native";
@@ -21,7 +20,12 @@ export default function BottomBar({ active }) {
     <View style={styles.container}>
       <View>
         <Image source={BackgroundImage} style={styles.backgroundImage} />
-        <TouchableOpacity style={[styles.btnAdd, styles.btnLayout]}>
+        <TouchableOpacity
+          style={[styles.btnAdd, styles.btnLayout]}
+          onPress={() => {
+            navigation.navigate("TreatmentSheet");
+          }}
+        >
           <Image
             style={styles.btnLayout}
             contentFit="cover"
@@ -33,7 +37,6 @@ export default function BottomBar({ active }) {
           <TouchableOpacity
             style={styles.tab}
             onPress={() => {
-              LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
               navigation.navigate("HomeProfessionnel");
             }}
           >
@@ -47,7 +50,6 @@ export default function BottomBar({ active }) {
           <TouchableOpacity
             style={[styles.tab, styles.marginright]}
             onPress={() => {
-              LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
               navigation.navigate("ChatsList");
             }}
           >
@@ -61,7 +63,6 @@ export default function BottomBar({ active }) {
           <TouchableOpacity
             style={styles.tab}
             onPress={() => {
-              LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
               navigation.navigate("Planning");
             }}
           >
@@ -75,7 +76,6 @@ export default function BottomBar({ active }) {
           <TouchableOpacity
             style={styles.tab}
             onPress={() => {
-              LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
               navigation.navigate("Map");
             }}
           >

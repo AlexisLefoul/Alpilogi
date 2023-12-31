@@ -1,32 +1,84 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Avatar, AvatarImage, VStack, HStack } from "@gluestack-ui/themed";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Avatar,
+  AvatarImage,
+  VStack,
+  HStack,
+  Popover,
+  PopoverBackdrop,
+  PopoverContent,
+  PopoverBody,
+} from "@gluestack-ui/themed";
 import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
 import Icon from "react-native-vector-icons/Ionicons";
 
-const RdvForList = ({ name, url, heures }) => {
+const RdvForList = ({ name, url, heures, todo }) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [toDo, setToDo] = React.useState(todo);
+
+  const handleOpenClose = () => {
+    setIsOpen(!isOpen);
+  };
+  const handleClose = () => {
+    setToDo(!toDo);
+    setIsOpen(false);
+  };
+  const boxRdvStyle = toDo
+    ? { ...styles.boxRdv, display: "none" }
+    : { ...styles.boxRdv, display: "flex" };
+
   return (
-    <HStack space="md" style={styles.boxRdv}>
-      <Avatar
-        bgColor={Color.bleu1}
-        size="lg"
-        borderRadius="$full"
-        style={styles.imgMessage}
-      >
-        <AvatarImage
-          source={{
-            uri: url,
-          }}
-        />
-      </Avatar>
-      <VStack space="xs" style={styles.taille}>
-        <Text style={styles.nameRdv}>{name}</Text>
-        <Text style={styles.heures}>{heures}</Text>
-      </VStack>
-      <View style={styles.icon}>
-        <Icon name="ellipsis-vertical" size={25} color={Color.bleu1} />
-      </View>
-    </HStack>
+    <>
+      <HStack space="md" style={boxRdvStyle}>
+        <Avatar
+          bgColor={Color.bleu1}
+          size="lg"
+          borderRadius="$full"
+          style={styles.imgMessage}
+        >
+          <AvatarImage
+            alt={Color.bleu1}
+            source={{
+              uri: url,
+            }}
+          />
+        </Avatar>
+        <VStack space="xs" style={styles.taille}>
+          <Text style={styles.nameRdv}>{name}</Text>
+          <Text style={styles.heures}>{heures}</Text>
+        </VStack>
+        <View style={styles.icon}>
+          <Popover
+            isOpen={isOpen}
+            onClose={handleClose}
+            placement="bottom right"
+            size="xs"
+            padding={70}
+            trigger={(triggerProps) => {
+              return (
+                <TouchableOpacity {...triggerProps} onPress={handleOpenClose}>
+                  <Icon
+                    name="ellipsis-vertical"
+                    size={25}
+                    color={Color.bleu1}
+                  />
+                </TouchableOpacity>
+              );
+            }}
+          >
+            <PopoverBackdrop backgroundColor="transparent" />
+            <PopoverContent style={styles.menuItem}>
+              <PopoverBody marginTop={5}>
+                <TouchableOpacity onPress={handleClose}>
+                  <Text style={styles.menuItemText}>✓ Fait</Text>
+                </TouchableOpacity>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
+        </View>
+      </HStack>
+    </>
   );
 };
 
@@ -70,6 +122,23 @@ const styles = StyleSheet.create({
   },
   icon: {
     alignSelf: "center",
+  },
+  menuItem: {
+    backgroundColor: Color.bleu1,
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: Border.br_15,
+    borderBottomLeftRadius: Border.br_15,
+    borderTopLeftRadius: Border.br_15,
+    width: 100,
+  },
+  menuItemText: {
+    fontFamily: FontFamily.corps,
+    fontSize: FontSize.size_15,
+    color: Color.bleu1,
+    backgroundColor: Color.bleu3,
+    paddingVertical: 5,
+    borderRadius: Border.br_40,
+    textAlign: "center",
   },
 });
 

@@ -52,6 +52,37 @@ export default function RegisterProfessionnel() {
   const [email, onChangeEmail] = React.useState("");
   const [mdpUser, onChangemdpUser] = React.useState("");
   const [checks, setChecks] = React.useState(false);
+  const inputRefs = {
+    input_1: React.useRef(null),
+    input_2: React.useRef(null),
+    input_3: React.useRef(null),
+    input_4: React.useRef(null),
+  };
+
+  const Changenum1 = (text, nextInputRef) => {
+    onChangenum1(text);
+    if (text.length === 1 && nextInputRef && nextInputRef.current) {
+      nextInputRef.current.focus();
+    }
+  };
+  const Changenum2 = (text, nextInputRef) => {
+    onChangenum2(text);
+    if (text.length === 1 && nextInputRef && nextInputRef.current) {
+      nextInputRef.current.focus();
+    }
+  };
+  const Changenum3 = (text, nextInputRef) => {
+    onChangenum3(text);
+    if (text.length === 1 && nextInputRef && nextInputRef.current) {
+      nextInputRef.current.focus();
+    }
+  };
+  const Changenum4 = (text, nextInputRef) => {
+    onChangenum4(text);
+    if (text.length === 1 && nextInputRef && nextInputRef.current) {
+      nextInputRef.current.focus();
+    }
+  };
 
   const handleRegister = () => {
     // Remplir les autres champs de l'objet user avec les données des inputs
@@ -131,35 +162,39 @@ export default function RegisterProfessionnel() {
         <View style={styles.containerNums}>
           <TextInput
             style={[styles.inputNum]}
+            ref={inputRefs.input_1}
             inputMode="numeric"
             maxLength={1}
             textAlign="center"
-            onChangeText={(text) => onChangenum1(text)}
+            onChangeText={(text) => Changenum1(text, inputRefs.input_2)}
             value={num1}
           />
           <TextInput
             style={[styles.inputNum]}
+            ref={inputRefs.input_2}
             inputMode="numeric"
             maxLength={1}
             textAlign="center"
             value={num2}
-            onChangeText={(text) => onChangenum2(text)}
+            onChangeText={(text) => Changenum2(text, inputRefs.input_3)}
           />
           <TextInput
             style={[styles.inputNum]}
+            ref={inputRefs.input_3}
             inputMode="numeric"
             maxLength={1}
             textAlign="center"
             value={num3}
-            onChangeText={(text) => onChangenum3(text)}
+            onChangeText={(text) => Changenum3(text, inputRefs.input_4)}
           />
           <TextInput
             style={[styles.inputNum]}
+            ref={inputRefs.input_4}
             inputMode="numeric"
             maxLength={1}
             textAlign="center"
             value={num4}
-            onChangeText={(text) => onChangenum4(text)}
+            onChangeText={(text) => Changenum4(text, inputRefs.input_4)}
           />
         </View>
         <Text style={styles.inputLabel}>Adresse postale</Text>

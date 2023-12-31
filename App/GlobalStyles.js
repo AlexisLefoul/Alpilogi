@@ -10,6 +10,7 @@ export const FontSize = {
   title_size: 32,
   sous_title_size: 20,
   corps_size: 24,
+  size_26: 26,
   size_17: 17,
   size_16: 16,
   size_15: 15,
@@ -24,6 +25,7 @@ export const Color = {
   orange: "#C67430",
   black: "#303030",
   white: "#ffffff",
+  black50: "#30303076",
 };
 /* border radiuses */
 export const Border = {

@@ -1,5 +1,12 @@
 import * as React from "react";
-import { StyleSheet, View, Text, ScrollView, Image } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import {
   Avatar,
   AvatarFallbackText,
@@ -13,49 +20,17 @@ import { format } from "date-fns";
 import frLocale from "date-fns/locale/fr"; // Importez la localisation française
 import BottomBar from "../components/BottomBar";
 import LineSep from "../assets/line.png";
-import PatientForlist from "../components/PatientForList";
+import PatientForlistHome from "../components/PatientForlistHome";
 import MessageForList from "../components/MessageForList";
+import data from "../datas.json";
 
 export default function HomeProfessionnel() {
   const navigation = useNavigation();
   const [currentDateTime, setCurrentDateTime] = React.useState(new Date());
-  const list = [
-    {
-      id: "1",
-      name: "John",
-      img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
-    },
-    {
-      id: "2",
-      name: "Marie",
-      img: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      id: "3",
-      name: "Android",
-      img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      id: "4",
-      name: "Loading",
-      img: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      id: "5",
-      name: "Please",
-      img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      id: "6",
-      name: "Zip",
-      img: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      id: "7",
-      name: "Question",
-      img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-  ];
+
+  const listPatients = data.patients;
+  const listFamille = data.persFamilles;
+  const listPatientsAvenir = data.patientsAvenir;
 
   // Mettez à jour la date et l'heure actuelle toutes les secondes
   React.useEffect(() => {
@@ -77,16 +52,19 @@ export default function HomeProfessionnel() {
         <View style={styles.top}>
           <View>
             <View style={styles.titleName}>
-              <Text style={[styles.textTitre, styles.textBlack]}>Bonjour,</Text>
+              <Text style={[styles.textTitre, styles.textBlack]}>
+                Bonjour,{" "}
+              </Text>
               <Text style={[styles.textTitre, styles.textSecondary]}>
                 Christine
               </Text>
             </View>
             <Text style={styles.sousTitre}>{formattedDateTime}</Text>
           </View>
-          <Avatar bgColor="$amber600" size="md" borderRadius="$full">
+          <Avatar bgColor={Color.bleu1} size="md" borderRadius="$full">
             <AvatarFallbackText>Sandeep Srivastava</AvatarFallbackText>
             <AvatarImage
+              alt={Color.bleu1}
               source={{
                 uri: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHZpc2FnZSUyMGRlJTIwZmVtbWV8ZW58MHx8MHx8fDA%3D",
               }}
@@ -99,8 +77,18 @@ export default function HomeProfessionnel() {
             <Image style={styles.line} contentFit="cover" source={LineSep} />
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               <HStack space="xl" style={styles.containerList}>
-                {list?.map((l) => (
-                  <PatientForlist name={l.name} img={l.img} key={l.id} />
+                {listPatients?.map((l) => (
+                  <TouchableOpacity
+                    key={l.id}
+                    onPress={() =>
+                      navigation.navigate("FichePatient", {
+                        patientId: l.id,
+                        from: "HP",
+                      })
+                    }
+                  >
+                    <PatientForlistHome name={l.name} img={l.img} />
+                  </TouchableOpacity>
                 ))}
               </HStack>
             </ScrollView>
@@ -110,8 +98,8 @@ export default function HomeProfessionnel() {
             <Image style={styles.line} contentFit="cover" source={LineSep} />
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               <HStack space="xl" style={styles.containerList}>
-                {list?.map((l) => (
-                  <PatientForlist name={l.name} img={l.img} key={l.id} />
+                {listPatientsAvenir?.map((l) => (
+                  <PatientForlistHome name={l.name} img={l.img} key={l.id} />
                 ))}
               </HStack>
             </ScrollView>
@@ -120,7 +108,7 @@ export default function HomeProfessionnel() {
             <Text style={styles.sousTitle}>Derniers messages</Text>
             <Image style={styles.line} contentFit="cover" source={LineSep} />
             <VStack space="lg" style={styles.listMessage}>
-              {list?.map((l) => (
+              {listFamille?.map((l) => (
                 <MessageForList name={l.name} url={l.img} key={l.id} />
               ))}
             </VStack>

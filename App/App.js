@@ -12,6 +12,15 @@ import HomeProfessionnel from "./screens/HomeProfessionnel";
 import ChatsList from "./screens/ChatsList";
 import Planning from "./screens/Planning";
 import Map from "./screens/Map";
+import FichePatient from "./screens/FichePatient";
+import HistoryTreatmentSheets from "./screens/HistoryTreatmentSheets";
+import TreatmentSheet from "./screens/TreatmentSheet";
+import TsStep1 from "./screens/TsStep1";
+import TsStep2 from "./screens/TsStep2";
+import TsStep3 from "./screens/TsStep3";
+import TsStep4 from "./screens/TsStep4";
+import TsStep5 from "./screens/TsStep5";
+import TsStep6 from "./screens/TsStep6";
 
 const Stack = createNativeStackNavigator();
 
@@ -48,37 +57,146 @@ const App = () => {
               <Stack.Screen
                 name="Home"
                 component={Home}
-                options={{ headerShown: false }}
+                options={{
+                  headerShown: false,
+                  animation: "fade",
+                  animationDuration: 0.01,
+                }}
               />
               <Stack.Screen
                 name="LogInProfessionnel"
                 component={LogInProfessionnel}
-                options={{ headerShown: false }}
+                options={{
+                  headerShown: false,
+                  animation: "fade",
+                  animationDuration: 0.01,
+                }}
               />
               <Stack.Screen
                 name="RegisterProfessionnel"
                 component={RegisterProfessionnel}
-                options={{ headerShown: false }}
+                options={{
+                  headerShown: false,
+                  animation: "fade",
+                  animationDuration: 0.01,
+                }}
               />
               <Stack.Screen
                 name="HomeProfessionnel"
                 component={HomeProfessionnel}
-                options={{ headerShown: false }}
+                options={{
+                  headerShown: false,
+                  animation: "fade",
+                  animationDuration: 0.01,
+                }}
               />
               <Stack.Screen
                 name="ChatsList"
                 component={ChatsList}
-                options={{ headerShown: false }}
+                options={{
+                  headerShown: false,
+                  animation: "fade",
+                  animationDuration: 0.01,
+                }}
               />
               <Stack.Screen
                 name="Planning"
                 component={Planning}
-                options={{ headerShown: false }}
+                options={{
+                  headerShown: false,
+                  animation: "fade",
+                  animationDuration: 0.01,
+                }}
               />
               <Stack.Screen
                 name="Map"
                 component={Map}
-                options={{ headerShown: false }}
+                options={{
+                  headerShown: false,
+                  animation: "fade",
+                  animationDuration: 0.01,
+                }}
+              />
+              <Stack.Screen
+                name="FichePatient"
+                component={FichePatient}
+                options={{
+                  headerShown: false,
+                  animation: "fade",
+                  animationDuration: 0.01,
+                }}
+              />
+              <Stack.Screen
+                name="HistoryTreatmentSheets"
+                component={HistoryTreatmentSheets}
+                options={{
+                  headerShown: false,
+                  animation: "fade",
+                  animationDuration: 0.01,
+                }}
+              />
+              <Stack.Screen
+                name="TreatmentSheet"
+                component={TreatmentSheet}
+                options={{
+                  headerShown: false,
+                  animation: "fade",
+                  animationDuration: 0.01,
+                }}
+              />
+              <Stack.Screen
+                name="TsStep1"
+                component={TsStep1}
+                options={{
+                  headerShown: false,
+                  animation: "fade",
+                  animationDuration: 0.01,
+                }}
+              />
+              <Stack.Screen
+                name="TsStep2"
+                component={TsStep2}
+                options={{
+                  headerShown: false,
+                  animation: "fade",
+                  animationDuration: 0.01,
+                }}
+              />
+              <Stack.Screen
+                name="TsStep3"
+                component={TsStep3}
+                options={{
+                  headerShown: false,
+                  animation: "fade",
+                  animationDuration: 0.01,
+                }}
+              />
+              <Stack.Screen
+                name="TsStep4"
+                component={TsStep4}
+                options={{
+                  headerShown: false,
+                  animation: "fade",
+                  animationDuration: 0.01,
+                }}
+              />
+              <Stack.Screen
+                name="TsStep5"
+                component={TsStep5}
+                options={{
+                  headerShown: false,
+                  animation: "fade",
+                  animationDuration: 0.01,
+                }}
+              />
+              <Stack.Screen
+                name="TsStep6"
+                component={TsStep6}
+                options={{
+                  headerShown: false,
+                  animation: "fade",
+                  animationDuration: 0.01,
+                }}
               />
             </Stack.Navigator>
           )}

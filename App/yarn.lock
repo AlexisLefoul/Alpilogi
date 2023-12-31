@@ -1690,6 +1690,11 @@
   resolved "https://registry.yarnpkg.com/@gluestack-ui/config/-/config-1.0.1.tgz#c748f579be6930e0cdd67e0edfac01fbe84f2b67"
   integrity sha512-QyrxfkYn8QPiYjefjgwaMNbo8ojL7k0838F3G96DDJbWsl6RBG8PjhT6DiAmRhDe7k4zzixKKlaRHFfXHEo3FA==
 
+"@gluestack-ui/config@^1.0.10":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/config/-/config-1.0.10.tgz#e0d226f95ea52900368e5b11e42f8d969268485d"
+  integrity sha512-19Ewiv/ETKKRlSCBwofoIA8v2ZouLeeycGWp87Okwlnrc6VdxEOrwm3OXmi1zxVe1lqQ2aNu1+Cvy/fTanh5CQ==
+
 "@gluestack-ui/divider@^0.1.8":
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/divider/-/divider-0.1.8.tgz#114584279aebc8bf6b718d039c521330051d8e44"
@@ -3373,6 +3378,11 @@
     "@types/express-serve-static-core" "^4.17.33"
     "@types/qs" "*"
     "@types/serve-static" "*"
+
+"@types/geojson@^7946.0.10":
+  version "7946.0.13"
+  resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-7946.0.13.tgz#e6e77ea9ecf36564980a861e24e62a095988775e"
+  integrity sha512-bmrNrgKMOhM3WsafmbGmC+6dsF2Z308vLFsQ3a/bT8X8Sv5clVYpPars/UPq+sAaJP+5OoLAYgwbkS5QEJdLUQ==
 
 "@types/glob@^7.1.1":
   version "7.2.0"
@@ -8437,6 +8447,13 @@ react-native-gesture-handler@~2.12.0:
     invariant "^2.2.4"
     lodash "^4.17.21"
     prop-types "^15.7.2"
+
+react-native-maps@1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-1.7.1.tgz#e0b9d68542b4b59b5ca3df375ada7c860fb41f2e"
+  integrity sha512-CHVLzL+Q2jiUGgbt4/vosxVI1SukWyaLGjD62VLgR/wZpnH4Umi9ql1bmKDPWcfj2C1QZwMU0Yc7rXTbvZUIiw==
+  dependencies:
+    "@types/geojson" "^7946.0.10"
 
 react-native-paper@^5.10.6:
   version "5.10.6"

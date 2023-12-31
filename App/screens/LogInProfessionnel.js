@@ -16,11 +16,11 @@ import {
   ToastTitle,
   ToastDescription,
 } from "@gluestack-ui/themed";
-
 import Icon from "react-native-vector-icons/Octicons";
 import BtnPrimary from "../components/BtnPrimary";
 import InputDefault from "../components/InputDefault";
 import InputPassword from "../components/InputPassword";
+import data from "../datas.json";
 
 export default function LogInProfessionnel() {
   const navigation = useNavigation();
@@ -81,12 +81,13 @@ export default function LogInProfessionnel() {
     // Afficher l'objet user dans la console
     console.log(user);
 
-    // Naviguer vers la page suivante (vous pouvez personnaliser cette partie)
-    if (
+    var emptyUser =
       user.codepin.length === 0 ||
       user.name.length === 0 ||
-      user.password.length === 0
-    ) {
+      user.password.length === 0;
+
+    // Naviguer vers la page suivante (vous pouvez personnaliser cette partie)
+    if (!isUser(user) || emptyUser) {
       toast.show({
         placement: "top",
         render: ({ id }) => {
@@ -227,10 +228,6 @@ const styles = StyleSheet.create({
     fontSize: FontSize.sous_title_size,
     fontFamily: FontFamily.corps,
   },
-  iconBack: {
-    width: 20,
-    height: 32,
-  },
   top: {
     flexDirection: "row",
     marginTop: 45,
@@ -283,3 +280,16 @@ const styles = StyleSheet.create({
     color: Color.bleu1,
   },
 });
+
+function isUser(user) {
+  var userdata = data.user;
+  if (
+    userdata.codepin.match(user.codepin) &&
+    userdata.name.match(user.name) &&
+    userdata.password.match(user.password)
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}

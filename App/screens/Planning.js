@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -6,7 +6,6 @@ import {
   ScrollView,
   TouchableOpacity,
   LayoutAnimation,
-  Image,
 } from "react-native";
 import {
   Input,
@@ -23,11 +22,12 @@ import { useNavigation } from "@react-navigation/native";
 import BottomBar from "../components/BottomBar";
 import RdvForList from "../components/RdvForList";
 
+// @TODO : voir comment améliorer le système "Fait" pour les rdv
+
 export default function Planning() {
   const navigation = useNavigation();
-  const [searchText, setSearchText] = React.useState(""); // État pour stocker le texte de recherche
-  const [selectedDayIndex, setSelectedDayIndex] = React.useState(3);
-  const [list, setList] = React.useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [list, setList] = useState([]);
 
   const list1 = [
     {
@@ -35,30 +35,35 @@ export default function Planning() {
       name: "John",
       img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
       heures: "9h00 - 10h30",
+      toDo: false,
     },
     {
       id: "2",
       name: "Marie",
       img: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       heures: "11h00 - 12h00",
+      toDo: false,
     },
     {
       id: "3",
       name: "Android",
       img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       heures: "13h15 - 14h00",
+      toDo: false,
     },
     {
       id: "4",
       name: "Loading",
       img: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       heures: "14h30 - 15h00",
+      toDo: false,
     },
     {
       id: "5",
       name: "Please",
       img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       heures: "16h00 - 17h30",
+      toDo: false,
     },
   ];
   const list2 = [
@@ -67,18 +72,21 @@ export default function Planning() {
       name: "Android",
       img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       heures: "13h15 - 14h00",
+      toDo: false,
     },
     {
       id: "2",
       name: "Loading",
       img: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       heures: "14h30 - 15h00",
+      toDo: false,
     },
     {
       id: "3",
       name: "Please",
       img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       heures: "16h00 - 17h30",
+      toDo: false,
     },
   ];
   const list3 = [
@@ -87,18 +95,21 @@ export default function Planning() {
       name: "John",
       img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
       heures: "9h00 - 10h30",
+      toDo: false,
     },
     {
       id: "2",
       name: "Marie",
       img: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       heures: "11h00 - 12h00",
+      toDo: false,
     },
     {
       id: "3",
       name: "Android",
       img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       heures: "13h15 - 14h00",
+      toDo: false,
     },
   ];
   const list4 = [
@@ -107,6 +118,7 @@ export default function Planning() {
       name: "John",
       img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
       heures: "9h00 - 10h30",
+      toDo: false,
     },
   ];
   const list5 = [
@@ -115,12 +127,14 @@ export default function Planning() {
       name: "Loading",
       img: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       heures: "14h30 - 15h00",
+      toDo: false,
     },
     {
       id: "2",
       name: "Please",
       img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       heures: "16h00 - 17h30",
+      toDo: false,
     },
   ];
   const list6 = [
@@ -129,30 +143,35 @@ export default function Planning() {
       name: "John",
       img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
       heures: "9h00 - 10h30",
+      toDo: false,
     },
     {
       id: "2",
       name: "Marie",
       img: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       heures: "11h00 - 12h00",
+      toDo: false,
     },
     {
       id: "3",
       name: "Android",
       img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       heures: "13h15 - 14h00",
+      toDo: false,
     },
     {
       id: "4",
       name: "Loading",
       img: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       heures: "14h30 - 15h00",
+      toDo: false,
     },
     {
       id: "5",
       name: "Please",
       img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       heures: "16h00 - 17h30",
+      toDo: false,
     },
   ];
   const list7 = [
@@ -161,77 +180,94 @@ export default function Planning() {
       name: "John",
       img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
       heures: "9h00 - 10h30",
+      toDo: false,
     },
     {
       id: "2",
       name: "Marie",
       img: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       heures: "11h00 - 12h00",
+      toDo: false,
     },
     {
       id: "3",
       name: "Please",
       img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       heures: "16h00 - 17h30",
+      toDo: false,
     },
   ];
 
-  // Fonction pour obtenir le nom du jour abrégé
+  const [selectedDayIndex, setSelectedDayIndex] = useState(0);
+
   const getDayName = (date) => {
     const dayNames = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
     return dayNames[date.getDay()];
   };
 
-  // Fonction pour obtenir une liste de jours
-  const getDaysList = () => {
-    const daysList = [];
-    const today = new Date();
+  const renderSelectedDayRdvList = (index) => {
+    const lists = [list1, list2, list3, list4, list5, list6, list7];
+    return lists[index] || [];
+  };
 
-    for (let i = -3; i <= 3; i++) {
-      const date = new Date();
-      date.setDate(today.getDate() + i);
-      const dayName = getDayName(date);
-      const dayNumber = date.getDate();
+  const [currentWeekStart, setCurrentWeekStart] = useState(new Date());
+  const [days, setDays] = useState([]);
+
+  useEffect(() => {
+    const weekDaysList = getWeekDaysList(currentWeekStart);
+    setDays(weekDaysList);
+  }, [currentWeekStart]);
+
+  useEffect(() => {
+    const today = new Date();
+    const currentDayIndex = days.findIndex(
+      (day) => day.dayNumber === today.getDate()
+    );
+    const initialIndex = currentDayIndex >= 0 ? currentDayIndex : 0;
+
+    setSelectedDayIndex(initialIndex);
+    setList(renderSelectedDayRdvList(initialIndex));
+  }, [days]);
+
+  useEffect(() => {
+    setList(renderSelectedDayRdvList(selectedDayIndex));
+  }, [selectedDayIndex]);
+
+  const getWeekDaysList = (date) => {
+    const daysList = [];
+    const dayOfWeek = date.getDay();
+    const diff = date.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
+    const weekStart = new Date(date.setDate(diff));
+
+    for (let i = 0; i < 7; i++) {
+      const currentDate = new Date(weekStart);
+      currentDate.setDate(weekStart.getDate() + i);
+      const dayName = getDayName(currentDate);
+      const dayNumber = currentDate.getDate();
       daysList.push({ dayName, dayNumber });
     }
 
     return daysList;
   };
 
-  // Utilisation de la fonction pour obtenir la liste de jours
-  const days = getDaysList();
-
-  const renderSelectedDayRdvList = () => {
-    switch (selectedDayIndex) {
-      case 0:
-        setList(list1);
-        break;
-      case 1:
-        setList(list2);
-        break;
-      case 2:
-        setList(list3);
-        break;
-      case 3:
-        setList(list4);
-        break;
-      case 4:
-        setList(list5);
-        break;
-      case 5:
-        setList(list6);
-        break;
-      case 6:
-        setList(list7);
-        break;
-      default:
-        return [];
-    }
+  const handleLastWeek = () => {
+    const prevWeekStart = new Date(currentWeekStart);
+    prevWeekStart.setDate(prevWeekStart.getDate() - 7);
+    setCurrentWeekStart(prevWeekStart);
+    setSelectedDayIndex(0);
   };
 
-  React.useEffect(() => {
-    setList(list3);
-  }, []);
+  const handleNextWeek = () => {
+    const nextWeekStart = new Date(currentWeekStart);
+    nextWeekStart.setDate(nextWeekStart.getDate() + 7);
+    setCurrentWeekStart(nextWeekStart);
+    setSelectedDayIndex(0);
+  };
+
+  const handleDayClick = (index) => {
+    setSelectedDayIndex(index);
+    setList(renderSelectedDayRdvList(index));
+  };
 
   const filteredList = list.filter((rdv) =>
     rdv.name.toLowerCase().includes(searchText.toLowerCase())
@@ -265,10 +301,22 @@ export default function Planning() {
         <View style={styles.body}>
           <VStack space="md" style={styles.containerInfo}>
             <View style={styles.headercalendar}>
-              <Text style={styles.sousTitle}>Juin 2023</Text>
+              <Text style={styles.sousTitle}>{`${
+                currentWeekStart
+                  .toLocaleString("default", { month: "long" })
+                  .charAt(0)
+                  .toUpperCase() +
+                currentWeekStart
+                  .toLocaleString("default", { month: "long" })
+                  .slice(1)
+              } ${currentWeekStart.getFullYear()}`}</Text>
               <HStack space="sm">
-                <Icon name="chevron-back" size={25} color={Color.bleu1} />
-                <Icon name="chevron-forward" size={25} color={Color.bleu1} />
+                <TouchableOpacity onPress={handleLastWeek} id="lastWeek">
+                  <Icon name="chevron-back" size={25} color={Color.bleu1} />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleNextWeek} id="nextWeek">
+                  <Icon name="chevron-forward" size={25} color={Color.bleu1} />
+                </TouchableOpacity>
               </HStack>
             </View>
             <View>
@@ -276,10 +324,7 @@ export default function Planning() {
                 {days.map((l, index) => (
                   <TouchableOpacity
                     key={index}
-                    onPress={() => {
-                      setSelectedDayIndex(index);
-                      renderSelectedDayRdvList();
-                    }}
+                    onPress={() => handleDayClick(index)}
                   >
                     <VStack
                       space="md"
@@ -323,6 +368,7 @@ export default function Planning() {
                   name={l.name}
                   url={l.img}
                   heures={l.heures}
+                  todo={l.toDo}
                   key={l.id}
                 />
               ))}
