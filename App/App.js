@@ -1,6 +1,7 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
+import { StatusBar } from "expo-status-bar";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { GluestackUIProvider } from "@gluestack-ui/themed";
 import { config } from "@gluestack-ui/config";
@@ -46,6 +47,7 @@ const App = () => {
 
   return (
     <>
+      <StatusBar style="auto" hidden={true} />
       <GluestackUIProvider config={config}>
         <NavigationContainer>
           {hideSplashScreen ? (
