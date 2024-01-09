@@ -21,7 +21,7 @@ const RdvForList = ({ name, url, heures, todo }) => {
     setIsOpen(!isOpen);
   };
   const handleClose = () => {
-    setToDo(!toDo);
+    setToDo(true);
     setIsOpen(false);
   };
   const boxRdvStyle = toDo
@@ -51,10 +51,9 @@ const RdvForList = ({ name, url, heures, todo }) => {
         <View style={styles.icon}>
           <Popover
             isOpen={isOpen}
-            onClose={handleClose}
+            onClose={handleOpenClose}
             placement="bottom right"
             size="xs"
-            padding={70}
             trigger={(triggerProps) => {
               return (
                 <TouchableOpacity {...triggerProps} onPress={handleOpenClose}>

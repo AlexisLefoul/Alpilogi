@@ -60,7 +60,17 @@ export default function ChatsList() {
         <View style={styles.body}>
           <VStack space="lg" style={styles.listMessage}>
             {filteredList.map((l) => (
-              <MessageForList name={l.name} url={l.img} key={l.id} />
+              <TouchableOpacity
+                key={l.id}
+                onPress={() => {
+                  LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+                  navigation.navigate("Chat", {
+                    userDesti: l,
+                  });
+                }}
+              >
+                <MessageForList name={l.name} url={l.img} />
+              </TouchableOpacity>
             ))}
           </VStack>
         </View>

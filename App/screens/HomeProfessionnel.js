@@ -6,6 +6,7 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  LayoutAnimation,
 } from "react-native";
 import {
   Avatar,
@@ -109,7 +110,19 @@ export default function HomeProfessionnel() {
             <Image style={styles.line} contentFit="cover" source={LineSep} />
             <VStack space="lg" style={styles.listMessage}>
               {listFamille?.map((l) => (
-                <MessageForList name={l.name} url={l.img} key={l.id} />
+                <TouchableOpacity
+                  key={l.id}
+                  onPress={() => {
+                    LayoutAnimation.configureNext(
+                      LayoutAnimation.Presets.spring
+                    );
+                    navigation.navigate("Chat", {
+                      userDesti: l,
+                    });
+                  }}
+                >
+                  <MessageForList name={l.name} url={l.img} />
+                </TouchableOpacity>
               ))}
             </VStack>
           </VStack>

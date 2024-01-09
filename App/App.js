@@ -21,6 +21,7 @@ import TsStep3 from "./screens/TsStep3";
 import TsStep4 from "./screens/TsStep4";
 import TsStep5 from "./screens/TsStep5";
 import TsStep6 from "./screens/TsStep6";
+import Chat from "./screens/Chat";
 
 const Stack = createNativeStackNavigator();
 
@@ -192,6 +193,15 @@ const App = () => {
               <Stack.Screen
                 name="TsStep6"
                 component={TsStep6}
+                options={{
+                  headerShown: false,
+                  animation: "fade",
+                  animationDuration: 0.01,
+                }}
+              />
+              <Stack.Screen
+                name="Chat"
+                component={Chat}
                 options={{
                   headerShown: false,
                   animation: "fade",
