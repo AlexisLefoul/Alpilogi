@@ -42,9 +42,7 @@ export default function PatientForMap({ name, lname, img, lat, long }) {
       >
         <VStack space="md" style={styles.center}>
           <Avatar bgColor={Color.bleu1} size="lg" borderRadius="$full">
-            <AvatarFallbackText>
-              {name} {lname}
-            </AvatarFallbackText>
+            <AvatarFallbackText>{name + " " + lname}</AvatarFallbackText>
             <AvatarImage source={{ uri: img }} alt={Color.bleu1} />
           </Avatar>
           <Text style={styles.text}>{name}</Text>
