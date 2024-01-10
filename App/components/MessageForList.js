@@ -1,6 +1,12 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
-import { Avatar, AvatarImage, VStack, HStack } from "@gluestack-ui/themed";
+import {
+  Avatar,
+  AvatarImage,
+  VStack,
+  HStack,
+  AvatarFallbackText,
+} from "@gluestack-ui/themed";
 import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
 
 const MessageForList = ({ name, url }) => {
@@ -12,6 +18,7 @@ const MessageForList = ({ name, url }) => {
         borderRadius="$full"
         style={styles.imgMessage}
       >
+        <AvatarFallbackText>{name}</AvatarFallbackText>
         <AvatarImage
           alt={Color.bleu1}
           source={{

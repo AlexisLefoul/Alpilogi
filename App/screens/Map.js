@@ -1,7 +1,7 @@
 import * as React from "react";
-import { StyleSheet, View, Text } from "react-native";
-import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
-import MapView, { Marker } from "react-native-maps";
+import { StyleSheet, View } from "react-native";
+import { Color, FontFamily, FontSize } from "../GlobalStyles";
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import {
   Input,
   InputSlot,
@@ -23,6 +23,7 @@ export default function Map() {
   return (
     <View style={styles.container}>
       <MapView
+        provider={PROVIDER_GOOGLE}
         style={{ flex: 1 }}
         initialRegion={{
           latitude: 48.136021929401075,
@@ -38,6 +39,7 @@ export default function Map() {
         {filteredList?.map((p) => (
           <PatientForMap
             name={p.name}
+            lname={p.lname}
             img={p.img}
             key={p.id}
             lat={p.pos.lat}

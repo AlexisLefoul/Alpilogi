@@ -9,6 +9,7 @@ import {
   PopoverBackdrop,
   PopoverContent,
   PopoverBody,
+  AvatarFallbackText,
 } from "@gluestack-ui/themed";
 import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -37,6 +38,7 @@ const RdvForList = ({ name, url, heures, todo }) => {
           borderRadius="$full"
           style={styles.imgMessage}
         >
+          <AvatarFallbackText>{name}</AvatarFallbackText>
           <AvatarImage
             alt={Color.bleu1}
             source={{

@@ -63,7 +63,7 @@ export default function HomeProfessionnel() {
             <Text style={styles.sousTitre}>{formattedDateTime}</Text>
           </View>
           <Avatar bgColor={Color.bleu1} size="md" borderRadius="$full">
-            <AvatarFallbackText>Sandeep Srivastava</AvatarFallbackText>
+            <AvatarFallbackText>Christine Bernard</AvatarFallbackText>
             <AvatarImage
               alt={Color.bleu1}
               source={{
@@ -88,7 +88,11 @@ export default function HomeProfessionnel() {
                       })
                     }
                   >
-                    <PatientForlistHome name={l.name} img={l.img} />
+                    <PatientForlistHome
+                      name={l.name}
+                      lname={l.lname}
+                      img={l.img}
+                    />
                   </TouchableOpacity>
                 ))}
               </HStack>
@@ -100,7 +104,12 @@ export default function HomeProfessionnel() {
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               <HStack space="xl" style={styles.containerList}>
                 {listPatientsAvenir?.map((l) => (
-                  <PatientForlistHome name={l.name} img={l.img} key={l.id} />
+                  <PatientForlistHome
+                    name={l.name}
+                    lname={l.lname}
+                    img={l.img}
+                    key={l.id}
+                  />
                 ))}
               </HStack>
             </ScrollView>

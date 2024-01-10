@@ -40,6 +40,9 @@ export default function FichePatient({ route }) {
               <Text style={[styles.textTitre]}>{patient.lname}</Text>
             </VStack>
             <Avatar bgColor={Color.bleu1} size="xl" borderRadius="$full">
+              <AvatarFallbackText>
+                {patient.name} {patient.lname}
+              </AvatarFallbackText>
               <AvatarImage source={{ uri: patient.img }} alt={Color.bleu1} />
             </Avatar>
           </HStack>

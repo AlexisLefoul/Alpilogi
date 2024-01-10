@@ -1,6 +1,12 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import { Avatar, AvatarImage, VStack, HStack } from "@gluestack-ui/themed";
+import {
+  Avatar,
+  AvatarImage,
+  VStack,
+  HStack,
+  AvatarFallbackText,
+} from "@gluestack-ui/themed";
 import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -31,6 +37,9 @@ export default function PatientForlist({
           borderRadius="$full"
           style={styles.imgMessage}
         >
+          <AvatarFallbackText>
+            {name} {lname}
+          </AvatarFallbackText>
           <AvatarImage
             alt={Color.bleu1}
             source={{

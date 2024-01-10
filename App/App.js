@@ -47,7 +47,7 @@ const App = () => {
 
   return (
     <>
-      <StatusBar style="auto" hidden={true} />
+      <StatusBar style="auto" backgroundColor="transparent" />
       <GluestackUIProvider config={config}>
         <NavigationContainer>
           {hideSplashScreen ? (

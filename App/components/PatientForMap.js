@@ -12,11 +12,12 @@ import {
   ModalFooter,
   Button,
   ButtonText,
+  AvatarFallbackText,
 } from "@gluestack-ui/themed";
 import { Marker } from "react-native-maps";
 import { FontSize, FontFamily, Color, Border } from "../GlobalStyles";
 
-export default function PatientForMap({ name, img, lat, long }) {
+export default function PatientForMap({ name, lname, img, lat, long }) {
   const [showModal, setShowModal] = React.useState(false);
 
   const openGoogleMaps = (latitude, longitude, name) => {
@@ -41,6 +42,9 @@ export default function PatientForMap({ name, img, lat, long }) {
       >
         <VStack space="md" style={styles.center}>
           <Avatar bgColor={Color.bleu1} size="lg" borderRadius="$full">
+            <AvatarFallbackText>
+              {name} {lname}
+            </AvatarFallbackText>
             <AvatarImage source={{ uri: img }} alt={Color.bleu1} />
           </Avatar>
           <Text style={styles.text}>{name}</Text>

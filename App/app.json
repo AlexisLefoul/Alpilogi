@@ -1,12 +1,22 @@
 {
   "expo": {
+    "name": "Alpilogi",
+    "icon": "./assets/LogoFlat.png",
     "extra": {
       "eas": {
         "projectId": "43d0547c-ede2-49b0-9ea7-95b8b52de3ce"
       }
     },
     "android": {
-      "package": "android.V0"
+      "package": "Alpilogi.android.V0",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyANn5hTL92dN2m0xXylQmZgyV3UskPPzMI"
+        }
+      }
+    },
+    "ios": {
+      "bundleIdentifier": "Alpilogi.ios.V0"
     }
   }
 }
