@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "Alpilogi Family",
+    "icon": "./assets/logoFamily.png",
+    "android": {
+      "package": "Alpilogi.Family.android.V0"
+    },
+    "ios": {
+      "bundleIdentifier": "Alpilogi.Family.ios.V0"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5432cc50-72e1-4f86-abc4-f67e131ddbc8"
+      }
+    },
+    "owner": "alexislefoul"
+  }
+}
