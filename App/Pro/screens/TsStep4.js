@@ -321,13 +321,13 @@ export default function TsStep4({ route }) {
         </View>
       </ScrollView>
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => setTsHumeurs()}>
-          <BtnPrimary
-            mode="contained"
-            text="Continuer"
-            outline={false}
-          ></BtnPrimary>
-        </TouchableOpacity>
+        <BtnPrimary
+          mode="contained"
+          text="Continuer"
+          outline={false}
+          disabled={false}
+          onPress={() => setTsHumeurs()}
+        ></BtnPrimary>
       </View>
     </View>
   );

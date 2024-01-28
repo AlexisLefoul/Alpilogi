@@ -322,13 +322,13 @@ export default function TsStep3({ route }) {
         </View>
       </ScrollView>
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => setTsTraitements()}>
-          <BtnPrimary
-            mode="contained"
-            text="Continuer"
-            outline={false}
-          ></BtnPrimary>
-        </TouchableOpacity>
+        <BtnPrimary
+          mode="contained"
+          text="Continuer"
+          outline={false}
+          disabled={false}
+          onPress={() => setTsTraitements()}
+        ></BtnPrimary>
       </View>
     </View>
   );

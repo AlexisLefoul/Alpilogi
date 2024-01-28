@@ -16,6 +16,7 @@ import {
   ToastTitle,
   ToastDescription,
 } from "@gluestack-ui/themed";
+import { useUser } from "../UserContext";
 import Icon from "react-native-vector-icons/Octicons";
 import BtnPrimary from "../components/BtnPrimary";
 import InputDefault from "../components/InputDefault";
@@ -24,6 +25,7 @@ import data from "../datas.json";
 
 export default function LogInProfessionnel() {
   const navigation = useNavigation();
+  const { userId, setUser } = useUser();
   const toast = useToast();
   const inputRefs = {
     input_1: React.useRef(null),
@@ -105,6 +107,20 @@ export default function LogInProfessionnel() {
         },
       });
     } else {
+      var userdata = data.users.find(
+        (u) =>
+          u.codepin === user.codepin &&
+          u.login === user.name &&
+          u.password === user.password
+      );
+      setUser(userdata.id);
+      onChangenum1("");
+      onChangenum2("");
+      onChangenum3("");
+      onChangenum4("");
+      onChangenameUser("");
+      onChangemdpUser("");
+
       navigation.navigate("HomeProfessionnel");
     }
   };
@@ -197,6 +213,7 @@ export default function LogInProfessionnel() {
             text="Se connecter"
             outline={false}
             onPress={handleLogin}
+            disabled={false}
           ></BtnPrimary>
         </View>
         <View style={styles.containerText}>
@@ -286,14 +303,14 @@ const styles = StyleSheet.create({
 });
 
 function isUser(user) {
-  var userdata = data.user;
-  if (
-    userdata.codepin.match(user.codepin) &&
-    userdata.name.match(user.name) &&
-    userdata.password.match(user.password)
-  ) {
-    return true;
-  } else {
-    return false;
-  }
+  var usersdata = data.users;
+  // Vérifier si un utilisateur avec le codepin, le nom d'utilisateur et le mot de passe existe
+  const existingUser = usersdata.find(
+    (u) =>
+      u.codepin === user.codepin &&
+      u.login === user.name &&
+      u.password === user.password
+  );
+  // Si un utilisateur correspondant est trouvé, retourner true, sinon retourner false
+  return !!existingUser;
 }

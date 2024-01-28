@@ -74,13 +74,13 @@ export default function TsStep5({ route }) {
         </View>
       </ScrollView>
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => setTsRemarques()}>
-          <BtnPrimary
-            mode="contained"
-            text="Continuer"
-            outline={false}
-          ></BtnPrimary>
-        </TouchableOpacity>
+        <BtnPrimary
+          mode="contained"
+          text="Continuer"
+          outline={false}
+          disabled={false}
+          onPress={() => setTsRemarques()}
+        ></BtnPrimary>
       </View>
     </View>
   );

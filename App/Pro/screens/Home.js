@@ -10,7 +10,7 @@ export default function Home() {
     Platform.OS === "android" || Platform.OS === "ios"
       ? styles.imageAndroid
       : styles.top;
-      
+
   return (
     <View style={styles.home}>
       <View style={stylesImages}>
@@ -32,12 +32,14 @@ export default function Home() {
             text="Se connecter"
             outline={false}
             onPress={() => navigation.navigate("LogInProfessionnel")}
+            disabled={false}
           ></BtnPrimary>
           <BtnPrimary
             mode="outlined"
             text="S'inscrire"
             outline={true}
             onPress={() => navigation.navigate("RegisterProfessionnel")}
+            disabled={false}
           ></BtnPrimary>
         </View>
       </View>

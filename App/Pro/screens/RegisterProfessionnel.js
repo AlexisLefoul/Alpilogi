@@ -241,6 +241,7 @@ export default function RegisterProfessionnel() {
             text="S’inscrire"
             outline={false}
             onPress={handleRegister}
+            disabled={false}
           ></BtnPrimary>
         </View>
         <View style={styles.containerText}>

@@ -6,7 +6,6 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
-  LayoutAnimation,
 } from "react-native";
 import {
   Avatar,
@@ -18,6 +17,7 @@ import {
 import { Color, FontFamily, FontSize } from "../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
 import { format } from "date-fns";
+import { useUser } from "../UserContext";
 import frLocale from "date-fns/locale/fr"; // Importez la localisation française
 import BottomBar from "../components/BottomBar";
 import LineSep from "../assets/line.png";
@@ -28,17 +28,16 @@ import data from "../datas.json";
 export default function HomeProfessionnel() {
   const navigation = useNavigation();
   const [currentDateTime, setCurrentDateTime] = React.useState(new Date());
-
+  const { userId } = useUser();
   const listPatients = data.patients;
   const listFamille = data.persFamilles;
   const listPatientsAvenir = data.patientsAvenir;
+  const currentUser = data.users.find((u) => u.id === userId);
 
-  // Mettez à jour la date et l'heure actuelle toutes les secondes
   React.useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentDateTime(new Date());
     }, 1000);
-
     // Assurez-vous de nettoyer l'intervalle lors du démontage du composant
     return () => clearInterval(intervalId);
   }, []);
@@ -57,20 +56,28 @@ export default function HomeProfessionnel() {
                 Bonjour,{" "}
               </Text>
               <Text style={[styles.textTitre, styles.textSecondary]}>
-                Christine
+                {currentUser.fname}
               </Text>
             </View>
             <Text style={styles.sousTitre}>{formattedDateTime}</Text>
           </View>
-          <Avatar bgColor={Color.bleu1} size="md" borderRadius="$full">
-            <AvatarFallbackText>Christine Bernard</AvatarFallbackText>
-            <AvatarImage
-              alt={Color.bleu1}
-              source={{
-                uri: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-              }}
-            />
-          </Avatar>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Profil");
+            }}
+          >
+            <Avatar bgColor={Color.bleu1} size="md" borderRadius="$full">
+              <AvatarFallbackText>
+                {currentUser.fname + " " + currentUser.lname}
+              </AvatarFallbackText>
+              <AvatarImage
+                alt={Color.bleu1}
+                source={{
+                  uri: currentUser.img,
+                }}
+              />
+            </Avatar>
+          </TouchableOpacity>
         </View>
         <View style={styles.body}>
           <VStack space="sm" style={styles.containerInfo}>

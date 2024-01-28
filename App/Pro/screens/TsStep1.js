@@ -64,18 +64,21 @@ export default function TsStep1({ route }) {
             text="Matin"
             outline={true}
             onPress={() => setTsWhen("Matin")}
+            disabled={false}
           ></BtnPrimary>
           <BtnPrimary
             mode="outlined"
             text="Midi"
             outline={true}
             onPress={() => setTsWhen("Midi")}
+            disabled={false}
           ></BtnPrimary>
           <BtnPrimary
             mode="outlined"
             text="Soir"
             outline={true}
             onPress={() => setTsWhen("Soir")}
+            disabled={false}
           ></BtnPrimary>
         </View>
       </View>

@@ -17,6 +17,15 @@
     },
     "ios": {
       "bundleIdentifier": "Alpilogi.ios.V0"
-    }
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "L'application Alpilogi veut accèder à vos photos",
+          "cameraPermission": "L'application Alpilogi veut accèder à votre appareil photo"
+        }
+      ]
+    ]
   }
 }

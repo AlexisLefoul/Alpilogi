@@ -1,11 +1,28 @@
 {
-  "user": {
-    "id": "1",
-    "codepin": "6666",
-    "name": "Root",
-    "password": "Root",
-    "img": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHZpc2FnZSUyMGRlJTIwZmVtbWV8ZW58MHx8MHx8fDA%3D"
-  },
+  "users": [
+    {
+      "id": "1",
+      "codepin": "6666",
+      "login": "Root",
+      "password": "Root",
+      "lname": "Bernard",
+      "fname": "Christine",
+      "birthday": "13/08/1975",
+      "genre": "Femme",
+      "img": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": "2",
+      "codepin": "9999",
+      "login": "Root",
+      "password": "Root",
+      "lname": "Laisné",
+      "fname": "Nicolas",
+      "birthday": "20/05/1988",
+      "genre": "Homme",
+      "img": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGluZmlybWllcnxlbnwwfHwwfHx8MA%3D%3D"
+    }
+  ],
 
   "persFamilles": [
     {
@@ -379,6 +396,46 @@
       "color": "#FFB762",
       "value": "Fatigué(e)",
       "img": "Fatigue"
+    }
+  ],
+
+  "listActions": [
+    {
+      "id": "1",
+      "text": "Modifier le profil",
+      "icon": "pencil-outline",
+      "nav": "EditProfil"
+    },
+    {
+      "id": "2",
+      "text": "Changer le mot de passe",
+      "icon": "lock-outline",
+      "nav": "Error"
+    },
+    {
+      "id": "3",
+      "text": "Change l’adresse e-mail",
+      "icon": "email-outline",
+      "nav": "Error"
+    },
+    {
+      "id": "4",
+      "text": "Compte",
+      "icon": "account-outline",
+      "nav": "Error"
+    },
+    {
+      "id": "5",
+      "text": "Préférences",
+      "icon": "alpha-i-circle-outline",
+      "nav": "Error"
+    },
+    {
+      "id": "6",
+      "text": "Se déconnecter",
+      "icon": "logout",
+      "nav": "Home",
+      "last": true
     }
   ]
 }
