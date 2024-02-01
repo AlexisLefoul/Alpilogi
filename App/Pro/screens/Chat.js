@@ -16,6 +16,7 @@ import { Avatar, AvatarFallbackText, AvatarImage } from "@gluestack-ui/themed";
 import IconOct from "react-native-vector-icons/Octicons";
 import IconMC from "react-native-vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native";
+import { useUser } from "../UserContext";
 import { Color, Border, FontFamily, FontSize } from "../GlobalStyles";
 import data from "../datas.json";
 import "date-fns/locale/fr";
@@ -23,8 +24,9 @@ import "date-fns/locale/fr";
 export default function Chat({ route }) {
   const navigation = useNavigation();
   const [messages, setMessages] = useState([]);
-  const auth = data.user;
-  const { userDesti } = route.params;
+  const { userId } = useUser();
+  const auth = data.users.find((u) => u.id === userId);
+    const { userDesti } = route.params;
 
   useEffect(() => {
     setMessages([
