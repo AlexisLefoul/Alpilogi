@@ -10,9 +10,9 @@
   },
   "dependencies": {
     "@expo/webpack-config": "^19.0.0",
-    "@gluestack-style/react": "^1.0.8",
-    "@gluestack-ui/config": "^1.0.10",
-    "@gluestack-ui/themed": "^1.0.8",
+    "@gluestack-style/react": "^1.0.49",
+    "@gluestack-ui/config": "^1.1.16",
+    "@gluestack-ui/themed": "^1.1.9",
     "@react-native-community/clipboard": "^1.5.1",
     "@react-native-community/datetimepicker": "7.2.0",
     "@react-navigation/bottom-tabs": "^6.3.1",

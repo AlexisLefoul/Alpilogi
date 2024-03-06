@@ -8,10 +8,11 @@ import {
   Platform,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import { FontFamily, Color } from "../GlobalStyles";
+import { FontFamily, Color, Border, FontSize } from "../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
 import BackgroundImage from "../assets/bg-botbar.png";
 import BackgroundImageBtnAdd from "../assets/bgbtnadd.png";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 export default function BottomBar({ active }) {
   const navigation = useNavigation();
@@ -26,65 +27,82 @@ export default function BottomBar({ active }) {
             navigation.navigate("TreatmentSheet");
           }}
         >
-          <Image
-            style={styles.btnLayout}
-            contentFit="cover"
-            source={BackgroundImageBtnAdd}
-          />
-          <Text style={[styles.text, styles.addIconStyle]}>+</Text>
+          <Text style={[styles.text]}>+</Text>
         </TouchableOpacity>
         <View style={styles.bottomBar}>
-          <TouchableOpacity
-            style={styles.tab}
-            onPress={() => {
-              navigation.navigate("HomeProfessionnel");
-            }}
-          >
-            <Icon
-              name="home-outline"
-              size={active == "homePro" ? 32 : 30}
-              color={active == "homePro" ? Color.white : Color.bleu2}
-            />
-          </TouchableOpacity>
+          <View style={styles.bottomBarItem}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("HomeProfessionnel");
+              }}
+              style={styles.taille}
+            >
+              <View
+                style={active == "homePro" ? styles.tab : styles.centerItem}
+              >
+                <Icon
+                  name="home-outline"
+                  size={active == "homePro" ? 28 : 27}
+                  color={active == "homePro" ? Color.white : Color.bleu2}
+                />
+              </View>
+              <Text style={styles.textBottombar}>Accueil</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("ChatsList");
+              }}
+              style={styles.taillemess}
+            >
+              <View
+                style={
+                  active == "chatslist" ? styles.tabformess : styles.formessicon
+                }
+              >
+                <Icon
+                  name="chatbox-ellipses-outline"
+                  size={active == "chatslist" ? 28 : 27}
+                  color={active == "chatslist" ? Color.white : Color.bleu2}
+                />
+              </View>
+              <Text style={styles.textBottombar}>Messagerie</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.bottomBarItem2}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Planning");
+              }}
+              style={[styles.marginLeft, styles.taille]}
+            >
+              <View
+                style={active == "planning" ? styles.tab : styles.centerItem}
+              >
+                <Icon
+                  name="calendar-outline"
+                  size={active == "planning" ? 28 : 27}
+                  color={active == "planning" ? Color.white : Color.bleu2}
+                />
+              </View>
+              <Text style={styles.textBottombar}>Planning</Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity
-            style={[styles.tab, styles.marginright]}
-            onPress={() => {
-              navigation.navigate("ChatsList");
-            }}
-          >
-            <Icon
-              name="chatbox-ellipses-outline"
-              size={active == "chatslist" ? 32 : 30}
-              color={active == "chatslist" ? Color.white : Color.bleu2}
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.tab}
-            onPress={() => {
-              navigation.navigate("Planning");
-            }}
-          >
-            <Icon
-              name="calendar-outline"
-              size={active == "planning" ? 32 : 30}
-              color={active == "planning" ? Color.white : Color.bleu2}
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.tab}
-            onPress={() => {
-              navigation.navigate("Map");
-            }}
-          >
-            <Icon
-              name="location-outline"
-              size={active == "map" ? 32 : 30}
-              color={active == "map" ? Color.white : Color.bleu2}
-            />
-          </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Map");
+              }}
+              style={styles.taille}
+            >
+              <View style={active == "map" ? styles.tab : styles.centerItem}>
+                <Icon
+                  name="location-outline"
+                  size={active == "map" ? 28 : 27}
+                  color={active == "map" ? Color.white : Color.bleu2}
+                />
+              </View>
+              <Text style={styles.textBottombar}>Carte</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>
@@ -124,45 +142,86 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 85,
   },
-  btnAdd: {
-    alignSelf: "center",
-    paddingTop: 10,
-  },
   btnLayout: {
+    alignSelf: "center",
     height: 70,
     width: 70,
+    backgroundColor: Color.bleu1,
+    borderRadius: 100,
   },
   text: {
     fontSize: 45,
     fontFamily: FontFamily.corps,
     color: Color.white,
-    textAlign: "center",
     alignSelf: "center",
-    position: "absolute",
-  },
-  addIconStyle: {
-    ...Platform.select({
-      ios: {
-        top: "35%",
-      },
-      android: {
-        top: "15%",
-      },
-      default: {
-        top: "25%",
-      },
-    }),
   },
   bottomBar: {
     flexDirection: "row",
-    justifyContent: "space-between", // Espacement équitable entre les onglets
-    paddingBottom: 25,
-    paddingHorizontal: 20,
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 5,
+    paddingBottom: 5,
+  },
+  bottomBarItem: {
+    flexDirection: "row",
+    alignItems: "flex-end",
+    height: "100%",
+    gap: 15,
+  },
+  bottomBarItem2: {
+    flexDirection: "row",
+    alignItems: "flex-end",
+    height: "100%",
+    gap: 25,
   },
   tab: {
-    alignItems: "center", // Centrer le contenu de chaque onglet
+    alignSelf: "center",
+    alignItems: "center",
+    paddingVertical: 5,
+    paddingHorizontal: 6,
+    backgroundColor: "#D6E4E580",
+    borderRadius: Border.br_40,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 4,
   },
-  marginright: {
-    marginRight: 70,
+  centerItem: {
+    alignSelf: "center",
+    paddingVertical: 6,
+  },
+  formessicon: {
+    alignSelf: "center",
+    paddingVertical: 6,
+  },
+  textBottombar: {
+    textAlign: "center",
+    marginTop: 2,
+    color: Color.white,
+    fontFamily: FontFamily.corps,
+    fontSize: FontSize.size_12,
+  },
+  tabformess: {
+    alignSelf: "center",
+    alignItems: "center",
+    paddingVertical: 5,
+    width: "55%",
+    backgroundColor: "#D6E4E580",
+    borderRadius: Border.br_40,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+  marginLeft: {
+    marginLeft: 10,
+  },
+  taille: {
+    width: "25%",
+  },
+  taillemess: {
+    width: "32%",
   },
 });
