@@ -15,6 +15,7 @@ export const FontSize = {
   size_16: 16,
   size_15: 15,
   size_14: 14,
+  size_12: 12,
   size_10: 10,
 };
 /* Colors */

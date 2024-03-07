@@ -1,7 +1,13 @@
 import * as React from "react";
-import { StyleSheet, View, TouchableOpacity, Platform } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Platform,
+  Text,
+} from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import { Color, Border } from "../GlobalStyles";
+import { Color, Border, FontFamily, FontSize } from "../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
 
 export default function BottomBar({ active }) {
@@ -11,57 +17,70 @@ export default function BottomBar({ active }) {
     <View style={styles.container}>
       <View style={styles.bottomBar}>
         <TouchableOpacity
-          style={active == "homeFam" ? styles.tab : null}
           onPress={() => {
             navigation.navigate("HomeFamily");
           }}
         >
-          <Icon
-            name="home-outline"
-            size={active == "homeFam" ? 32 : 30}
-            color={active == "homeFam" ? Color.white : Color.bleu2}
-          />
+          <View style={active == "homeFam" ? styles.tab : styles.centerItem}>
+            <Icon
+              name="home-outline"
+              size={active == "homeFam" ? 30 : 29}
+              color={active == "homeFam" ? Color.white : Color.bleu2}
+            />
+          </View>
+          <Text style={styles.textBottombar}>Accueil</Text>
         </TouchableOpacity>
-
         <TouchableOpacity
-          style={active == "historyTreatmentSheets" ? styles.tab : null}
           onPress={() => {
             navigation.navigate("HistoryTreatmentSheets");
           }}
         >
-          <Icon
-            name="file-tray-full-outline"
-            size={active == "historyTreatmentSheets" ? 32 : 30}
-            color={
-              active == "historyTreatmentSheets" ? Color.white : Color.bleu2
+          <View
+            style={
+              active == "historyTreatmentSheets"
+                ? styles.tab
+                : styles.centerItem
             }
-          />
+          >
+            <Icon
+              name="file-tray-full-outline"
+              size={active == "historyTreatmentSheets" ? 30 : 29}
+              color={
+                active == "historyTreatmentSheets" ? Color.white : Color.bleu2
+              }
+            />
+          </View>
+          <Text style={styles.textBottombar}>Soins</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={active == "chatslist" ? styles.tab : null}
           onPress={() => {
             navigation.navigate("ChatsList");
           }}
         >
-          <Icon
-            name="chatbox-ellipses-outline"
-            size={active == "chatslist" ? 32 : 30}
-            color={active == "chatslist" ? Color.white : Color.bleu2}
-          />
+          <View style={active == "chatslist" ? styles.tab : styles.centerItem}>
+            <Icon
+              name="chatbox-ellipses-outline"
+              size={active == "chatslist" ? 32 : 30}
+              color={active == "chatslist" ? Color.white : Color.bleu2}
+            />
+          </View>
+          <Text style={styles.textBottombar}>Messages</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={active == "planning" ? styles.tab : null}
           onPress={() => {
             navigation.navigate("Planning");
           }}
         >
-          <Icon
-            name="calendar-outline"
-            size={active == "planning" ? 32 : 30}
-            color={active == "planning" ? Color.white : Color.bleu2}
-          />
+          <View style={active == "planning" ? styles.tab : styles.centerItem}>
+            <Icon
+              name="calendar-outline"
+              size={active == "planning" ? 32 : 30}
+              color={active == "planning" ? Color.white : Color.bleu2}
+            />
+          </View>
+          <Text style={styles.textBottombar}>Rendez-vous</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -98,13 +117,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: 30,
+    paddingHorizontal: 25,
     backgroundColor: Color.bleu1,
     borderRadius: Border.br_40,
   },
   tab: {
-    paddingVertical: 12,
-    paddingHorizontal: 13,
+    alignSelf: "center",
+    alignItems: "center",
+    paddingVertical: 7,
+    paddingHorizontal: 8,
     backgroundColor: "#D6E4E580",
     borderRadius: Border.br_40,
     shadowColor: "#000",
@@ -112,5 +133,17 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 4,
+  },
+  centerItem: {
+    alignItems: "center",
+    paddingVertical: 7,
+    paddingHorizontal: 8,
+  },
+  textBottombar: {
+    textAlign: "center",
+    marginTop: 2,
+    color: Color.white,
+    fontFamily: FontFamily.corps,
+    fontSize: FontSize.size_12,
   },
 });
