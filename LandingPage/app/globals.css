@@ -30,9 +30,9 @@ a {
 
 .footer {
   width: 100%;
-  background-color: #497174; /* Couleur de fond du footer */
-  color: white; /* Couleur du texte */
-  padding: 20px 0; /* Espacement intérieur */
+  background-color: #497174;
+  color: white;
+  padding: 20px 0;
 }
 
 .footer-content {
