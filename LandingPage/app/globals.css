@@ -40,9 +40,9 @@ a {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  max-width: 1200px; /* Largeur max du contenu */
-  margin: 0 auto; /* Centrer le contenu */
-  padding: 0 20px; /* Espacement autour du contenu */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .social-links {
