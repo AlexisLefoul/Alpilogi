@@ -1,12 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Caveat:wght@400;700&display=swap');
 
-@font-face {
-  font-family: 'DIN Alternate';
-  src: url('./fonts/DINAlternate-Bold.ttf') format('truetype');
-  font-weight: bold;
-  font-style: normal;
-}
-
 :root {
   --border-radius: 12px;
   --foreground-rgb: 0, 0, 0;
