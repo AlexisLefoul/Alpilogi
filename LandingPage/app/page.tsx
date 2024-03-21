@@ -13,6 +13,8 @@ import {
   InputField,
   Button,
   ButtonText,
+  Menu,
+  MenuItem,
   Divider,
 } from "@gluestack-ui/themed";
 import React, { useEffect, useState } from "react";
@@ -27,10 +29,25 @@ const supabase = createClient(
 );
 
 export default function Home() {
+  const [windowWidth, setWindowWidth] = useState<number>(0);
+
+  useEffect(() => {
+    // Fonction pour mettre à jour la largeur de la fenêtre
+    const updateWindowWidth = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    // Mettre à jour la largeur initiale lors du montage du composant
+    updateWindowWidth();
+
+    // Ajouter l'écouteur d'événement pour les changements de taille
+    window.addEventListener("resize", updateWindowWidth);
+
+    // Supprimer l'écouteur d'événement lors du démontage du composant
+    return () => window.removeEventListener("resize", updateWindowWidth);
+  }, []);
   return (
-    <main>
-      <Container />
-    </main>
+    <main>{windowWidth > 1300 ? <Container /> : <ContainerMobile />}</main>
   );
 }
 
@@ -73,7 +90,7 @@ const FeatureCard = ({ iconSvg, name, name2, name3, desc }: any) => {
   );
 };
 
-const Timer = ({ deadline }: any) => {
+const Timer = ({ deadline, type }: any) => {
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
@@ -104,36 +121,68 @@ const Timer = ({ deadline }: any) => {
     return () => getTimeUntil(deadline);
   }, [deadline]);
   return (
-    <HStack gap={"$12"}>
+    <HStack gap={type == "m" ? "$5" : "$12"}>
       <VStack alignItems="center">
-        <Text fontSize={50} color="#ffffff" fontFamily="DIN Alternate">
+        <Text
+          fontSize={type == "m" ? 32 : 50}
+          color="#ffffff"
+          fontFamily="DIN Alternate"
+        >
           {leading0(days)}
         </Text>
-        <Text fontSize={40} color="#ffffff" fontFamily="Caveat">
+        <Text
+          fontSize={type == "m" ? 22 : 40}
+          color="#ffffff"
+          fontFamily="Caveat"
+        >
           jours
         </Text>
       </VStack>
       <VStack alignItems="center">
-        <Text fontSize={50} color="#ffffff" fontFamily="DIN Alternate">
+        <Text
+          fontSize={type == "m" ? 32 : 50}
+          color="#ffffff"
+          fontFamily="DIN Alternate"
+        >
           {leading0(hours)}
         </Text>
-        <Text fontSize={40} color="#ffffff" fontFamily="Caveat">
+        <Text
+          fontSize={type == "m" ? 22 : 40}
+          color="#ffffff"
+          fontFamily="Caveat"
+        >
           heures
         </Text>
       </VStack>
       <VStack alignItems="center">
-        <Text fontSize={50} color="#ffffff" fontFamily="DIN Alternate">
+        <Text
+          fontSize={type == "m" ? 32 : 50}
+          color="#ffffff"
+          fontFamily="DIN Alternate"
+        >
           {leading0(minutes)}
         </Text>
-        <Text fontSize={40} color="#ffffff" fontFamily="Caveat">
+        <Text
+          fontSize={type == "m" ? 22 : 40}
+          color="#ffffff"
+          fontFamily="Caveat"
+        >
           minutes
         </Text>
       </VStack>
       <VStack alignItems="center">
-        <Text fontSize={50} color="#ffffff" fontFamily="DIN Alternate">
+        <Text
+          fontSize={type == "m" ? 32 : 50}
+          color="#ffffff"
+          fontFamily="DIN Alternate"
+        >
           {leading0(seconds)}
         </Text>
-        <Text fontSize={40} color="#ffffff" fontFamily="Caveat">
+        <Text
+          fontSize={type == "m" ? 22 : 40}
+          color="#ffffff"
+          fontFamily="Caveat"
+        >
           secondes
         </Text>
       </VStack>
@@ -323,11 +372,13 @@ const ParcourCard = ({ name, num, desc }: any) => {
   );
 };
 
-const FooterCard = () => {
+const FooterCard = ({ type }: any) => {
   return (
     <footer className="footer" id="contact">
       <div className="footer-content">
-        <p>© 2024 Alpilogi. Tous droits réservés.</p>
+        <p className={type == "m" ? "footer-p" : ""}>
+          © 2024 Alpilogi. Tous droits réservés.
+        </p>
         <div className="social-links">
           <a href="https://facebook.com">
             <Image
@@ -808,6 +859,467 @@ const Container = () => {
         </HStack>
       </VStack>
       <FooterCard />
+    </Box>
+  );
+};
+
+const ContainerMobile = () => {
+  let deadline = "June, 21, 2024";
+  const [isShowingAlert, setShowingAlert] = useState<boolean>(false);
+  const [data, setData] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [activeType, setActiveType] = useState<string | null>("ann");
+
+  async function addNewlatters(email: string) {
+    if (email) {
+      const status = (
+        await supabase.from("newsletters").insert({ email: email })
+      ).status;
+      if (status === 201) {
+        setShowingAlert(true);
+        setData("Inscrit");
+        setEmail("");
+      } else if (status === 409) {
+        setShowingAlert(true);
+        setData("Erreur");
+        setEmail("");
+      }
+      console.log(status);
+    } else {
+      setShowingAlert(true);
+      setData("Erreur");
+      setEmail("");
+    }
+  }
+
+  const styleCheck = {
+    height: 300,
+    width: 300,
+    margin: "auto",
+  };
+
+  const styleCross = {
+    height: 200,
+    width: 200,
+    margin: "auto",
+  };
+
+  useEffect(() => {
+    if (isShowingAlert === true) {
+      setTimeout(() => {
+        setShowingAlert(false);
+      }, 3000);
+    }
+  }, [isShowingAlert]);
+
+  return (
+    <Box flex={1} bg="$white" $web-h={"100%"}>
+      {data === "Inscrit" && isShowingAlert && (
+        <>
+          <div className="backdrop" />
+          <div className="container-notif">
+            <Lottie
+              loop={false}
+              animationData={animationDataCheck}
+              style={styleCheck}
+            />
+            <h2 style={{ marginTop: -50, fontSize: 40, color: "white" }}>
+              {data} !
+            </h2>
+          </div>
+        </>
+      )}
+      {data === "Erreur" && isShowingAlert && (
+        <>
+          <div className="backdrop" />
+          <div className="container-notif">
+            <Lottie
+              loop={false}
+              animationData={animationDataCross}
+              style={styleCross}
+            />
+            <h2 style={{ marginTop: 0, fontSize: 40, color: "white" }}>
+              {data}
+            </h2>
+          </div>
+        </>
+      )}
+      <HStack alignItems="center">
+        <Menu
+          placement="bottom left"
+          trigger={({ ...triggerProps }) => {
+            return (
+              <Button {...triggerProps} backgroundColor="transparent">
+                <Box h={40} w={40}>
+                  <Image
+                    source="/icon-menu-hamburger.svg"
+                    size="full"
+                    alt="logo"
+                  />
+                </Box>
+              </Button>
+            );
+          }}
+        >
+          <MenuItem key="home" textValue="home">
+            <Link href="#home" marginRight={10}>
+              <LinkText
+                color="#303030"
+                fontSize={18}
+                fontFamily="Roboto"
+                fontWeight="$medium"
+                textDecorationLine="none"
+              >
+                Accueil
+              </LinkText>
+            </Link>
+          </MenuItem>
+          <MenuItem key="whoiam" textValue="whoiam">
+            <Link href="#whoiam" marginRight={10}>
+              <LinkText
+                color="#303030"
+                fontSize={18}
+                fontFamily="Roboto"
+                fontWeight="$medium"
+                textDecorationLine="none"
+              >
+                Qui sommes-nous ?
+              </LinkText>
+            </Link>
+          </MenuItem>
+          <MenuItem key="contact" textValue="contact">
+            <Link href="#contact" marginRight={10}>
+              <LinkText
+                color="#C67430"
+                fontSize={18}
+                fontFamily="Roboto"
+                fontWeight="$medium"
+                textDecorationLine="none"
+              >
+                Contact
+              </LinkText>
+            </Link>
+          </MenuItem>
+        </Menu>
+        <Box w={"80%"} alignItems="center">
+          <Image source="/logov0.png" h={150} w={150} alt="icon" />
+        </Box>
+      </HStack>
+      <VStack space="4xl" w={"100%"} paddingBottom={"$24"}>
+        <VStack space="4xl" id="home" alignSelf="center">
+          <Image
+            alignSelf="center"
+            source="/Iphone.svg"
+            width={380}
+            height={380}
+            alt="Mockup iphone"
+          />
+          <VStack space="4xl" alignSelf="center" w={"90%"}>
+            <Text fontSize={24} color="#303030" fontFamily="DIN Alternate">
+              La{" "}
+              <Text fontSize={40} color="#C67430" fontFamily="Caveat">
+                solution
+              </Text>{" "}
+              digitale pour faciliter les{" "}
+              <Text color="#C67430" fontSize={40} fontFamily="Caveat">
+                soins à domicile
+              </Text>
+            </Text>
+            <Text fontSize={14} color="#303030" fontFamily="Roboto">
+              Alpilogi est un logiciel de digitalisation des feuilles de soin
+              utilisées par les professionnels de la santé. Pour les familles,
+              il est également possible d’être tenu informé à distance et
+              facilement des services apportés à vos proches.
+            </Text>
+            <Input
+              w={"100%"}
+              h={"$12"}
+              variant="rounded"
+              bgColor="#EFF5F5"
+              borderWidth="$0"
+              isFocused={false}
+            >
+              <InputField
+                pl="$5"
+                color="#303030"
+                placeholderTextColor="#B6BABA"
+                placeholder="Adresse mail..."
+                inputMode="email"
+                value={email}
+                onChangeText={(text) => setEmail(text)}
+              />
+              <InputSlot pl="$3">
+                <Button
+                  variant="solid"
+                  size="md"
+                  h={"$full"}
+                  borderRadius="$3xl"
+                  bg="#C67430"
+                  onPress={() => addNewlatters(email)}
+                >
+                  <ButtonText
+                    padding={10}
+                    fontFamily="Roboto"
+                    fontSize={14}
+                    fontWeight="$bold"
+                    color="#ffffff"
+                  >
+                    S’inscrire
+                  </ButtonText>
+                </Button>
+              </InputSlot>
+            </Input>
+          </VStack>
+        </VStack>
+        <Box
+          w={"85%"}
+          backgroundColor="#497174"
+          alignSelf="center"
+          borderRadius={"$3xl"}
+          paddingVertical={"$5"}
+          alignItems="center"
+          gap={"$10"}
+        >
+          <Text
+            fontSize={24}
+            color="#ffffff"
+            fontFamily="DIN Alternate"
+            textAlign="center"
+          >
+            Téléchargez{" "}
+            <Text fontSize={40} color="#ffffff" fontFamily="Caveat">
+              l’application
+            </Text>
+            {"  "}
+            Alpilogi dans
+          </Text>
+          <Timer deadline={deadline} type="m" />
+        </Box>
+        <Text
+          fontSize={24}
+          color="#303030"
+          fontFamily="DIN Alternate"
+          alignSelf="center"
+          marginTop={"$10"}
+          id="whoiam"
+        >
+          Notre{" "}
+          <Text fontSize={40} color="#C67430" fontFamily="Caveat">
+            mission
+          </Text>
+        </Text>
+        <VStack w={"85%"} alignSelf="center">
+          <FeatureCard
+            iconSvg="icon-seringue.svg"
+            name="Décharger le quotidien des "
+            name2="professionnels"
+            name3=""
+            desc="Remplissez facilement et rapidement les documents de vos patients ! Vous pouvez également bénéficier d’un suivi, d’une synthèse et de fiches patients."
+          ></FeatureCard>
+          <FeatureCard
+            iconSvg="icon-messages.svg"
+            name="Rassurer les "
+            name2="familles "
+            name3="grâce au lien avec les intervenants"
+            desc="Soyez avertis des soins apportés à vos proches en temps réel, communiquez avec l’auxiliaire de vie et faites passer des messages grâce au tchat."
+          ></FeatureCard>
+          <FeatureCard
+            iconSvg="icon-orga.svg"
+            name="Soulager les "
+            name2="organismes "
+            name3="d’aide à la personne"
+            desc="Restez connectés avec vos salariés grâce à un tableau de bord recensant leurs missions et leurs patients à charge."
+          ></FeatureCard>
+        </VStack>
+        <VStack w={"85%"} alignSelf="center" marginTop={"$10"} space="2xl">
+          <Text fontSize={24} color="#303030" fontFamily="DIN Alternate">
+            Pourquoi choisir{" "}
+            <Text fontSize={40} color="#C67430" fontFamily="Caveat">
+              Alpilogi{" "}
+            </Text>
+            ?
+          </Text>
+          <Text fontSize={14} color="#303030" fontFamily="Roboto">
+            Alpilogi vous aidera dans la gestion de votre journée en tant
+            qu’aide à domicile avec la création de fiches de soin numérisées, un
+            trajet crée de manière otpimale pour vos visites chez vos patients
+            et un gain de temps chez vous le soir. Toutes les informations sur
+            les soins apportés seront directement communiqués à la famille sans
+            que celle-ci s’inquiète.
+          </Text>
+          <Box>
+            <VStack space="md" alignItems="flex-start">
+              <PointCard
+                name="Création d’un "
+                name2="lien"
+                desc="Pour que les familles aient accès aux soins apportés à leurs proches à travers un système de messagerie et de partage d’informations"
+              />
+              <Divider
+                orientation="horizontal"
+                mx="$1"
+                bg="#497174"
+                h={"$0.5"}
+                w={"$24"}
+                alignSelf="center"
+              />
+              <PointCard
+                name="Numériser les "
+                name2="infos"
+                desc="Simplifications de la fiche de soin pour les infirmier.ère.s qui pourront l’établir directement sur l’application"
+              />
+              <Divider
+                orientation="horizontal"
+                mx="$1"
+                bg="#497174"
+                h={"$0.5"}
+                w={"$24"}
+                alignSelf="center"
+              />
+              <PointCard
+                name="Faciliter "
+                name2="l’organisation"
+                desc="Tous les documents seront numérisés ce qui rendra plus simple l'archivage des feuilles de soin pour l’organisme (informatique)"
+              />
+              <Divider
+                orientation="horizontal"
+                mx="$1"
+                bg="#497174"
+                h={"$0.5"}
+                w={"$24"}
+                alignSelf="center"
+              />
+              <PointCard
+                name="Générer de la "
+                name2="confiance"
+                desc="Les familles pourront se fier totalement aux intervenants qui garantiront une relation de confiance entre eux et le patient"
+              />
+              <Divider
+                orientation="horizontal"
+                mx="$1"
+                bg="#497174"
+                h={"$0.5"}
+                w={"$24"}
+                alignSelf="center"
+              />
+              <PointCard
+                name="Gratuit pour les "
+                name2="familles"
+                desc="Les familles auront simplement besoin de l’application sur leur téléphone pour avoir accès à l’interface"
+              />
+              <Divider
+                orientation="horizontal"
+                mx="$1"
+                bg="#497174"
+                h={"$0.5"}
+                w={"$24"}
+                alignSelf="center"
+              />
+              <PointCard
+                name="Un pack "
+                name2="pour tous"
+                desc="Pour les organisations, les intervenant et les familles, Alpilogi vous suffit !"
+              />
+            </VStack>
+          </Box>
+        </VStack>
+        <Box alignSelf="center" w={"85%"} marginTop={"$10"} gap={"$5"}>
+          <Text
+            fontSize={24}
+            color="#303030"
+            fontFamily="DIN Alternate"
+            textAlign="center"
+          >
+            Choisissez votre{" "}
+            <Text fontSize={40} color="#C67430" fontFamily="Caveat">
+              formule
+            </Text>
+          </Text>
+          <Text fontSize={14} color="#303030" fontFamily="Roboto">
+            En fonction de vos besoins et de votre utilisation, vous pouvez
+            sélectionner la formule qui vous correspond le plus. Profitez
+            pleinement d’Alpilogi au quotidien !
+          </Text>
+        </Box>
+        <VStack w={"85%"} alignSelf="center">
+          <PriceCard
+            name="Mensuel"
+            price="25€"
+            type="men"
+            activeType={activeType}
+            setActiveType={setActiveType}
+          />
+          <PriceCard
+            name="Annuel"
+            price="20,80€"
+            type="ann"
+            activeType={activeType}
+            setActiveType={setActiveType}
+          />
+          <PriceCard
+            name="API"
+            price="125€"
+            type="api"
+            activeType={activeType}
+            setActiveType={setActiveType}
+          />
+        </VStack>
+        <VStack w={"85%"} alignSelf="center" marginTop={"$10"} space="2xl">
+          <Text fontSize={24} color="#303030" fontFamily="DIN Alternate">
+            Comment ça{" "}
+            <Text fontSize={40} color="#C67430" fontFamily="Caveat">
+              fonctionne{" "}
+            </Text>
+            ?
+          </Text>
+          <Image
+            source="/mockup_2.svg"
+            width={450}
+            height={350}
+            alt="Mockup iphone 2"
+            alignSelf="center"
+          />
+          <VStack
+            alignItems="center"
+            space="xl"
+            paddingHorizontal={"$20"}
+            paddingTop={"$5"}
+          >
+            <ParcourCard
+              name="Téléchargez"
+              num="1"
+              desc="Rendez-vous sur l’app store ou sur google play afin de télécharger
+              notre application"
+            />
+            <Divider
+              orientation="vertical"
+              mx="$1"
+              bg="#303030"
+              h={"$16"}
+              w={"$0.5"}
+            />
+            <ParcourCard
+              name="Inscrivez-vous"
+              num="2"
+              desc="Suivez les étapes de création de compte et laissez-vous guider par
+              l’application"
+            />
+            <Divider
+              orientation="vertical"
+              mx="$1"
+              bg="#303030"
+              h={"$16"}
+              w={"$0.5"}
+            />
+            <ParcourCard
+              name="Profitez"
+              num="3"
+              desc="Bénéficiez de la simplicité d’utilisation de l’interface et
+              utilisez Alpilogi au quotidien"
+            />
+          </VStack>
+        </VStack>
+      </VStack>
+      <FooterCard type="m" />
     </Box>
   );
 };

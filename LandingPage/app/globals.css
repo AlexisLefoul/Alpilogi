@@ -45,9 +45,15 @@ a {
   padding: 0 20px;
 }
 
+.footer-p {
+  margin: auto;
+  margin-bottom: 8px;
+}
+
 .social-links {
   display: flex;
   flex-direction: row;
+  margin: auto;
 }
 
 .social-links a {
