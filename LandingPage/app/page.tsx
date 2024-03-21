@@ -409,7 +409,7 @@ const Container = () => {
   }, [isShowingAlert]);
 
   return (
-    <Box flex={1} bg="$white" $web-h={"100vh"}>
+    <Box flex={1} bg="$white" $web-h={"100%"}>
       {data === "Inscrit" && isShowingAlert && (
         <>
           <div className="backdrop" />
@@ -448,7 +448,7 @@ const Container = () => {
           space="4xl"
           reversed={false}
           alignItems="center"
-          marginLeft={"50vh"}
+          marginLeft={"$56"}
         >
           <Link href="#home" marginRight={10}>
             <LinkText
@@ -523,7 +523,7 @@ const Container = () => {
               variant="rounded"
               bgColor="#EFF5F5"
               borderWidth="$0"
-              isFocused="false"
+              isFocused={false}
             >
               <InputField
                 pl="$10"
@@ -558,8 +558,8 @@ const Container = () => {
           </VStack>
           <Image
             source="/Iphone.svg"
-            w={"600px"}
-            h={"600px"}
+            width={600}
+            height={600}
             alt="Mockup iphone"
           />
         </HStack>
@@ -760,8 +760,8 @@ const Container = () => {
             </Text>
             <Image
               source="/mockup_2.svg"
-              w={"750px"}
-              h={"650px"}
+              width={750}
+              height={650}
               alt="Mockup iphone 2"
             />
           </VStack>
